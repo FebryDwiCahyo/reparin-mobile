@@ -1,3 +1,5 @@
+// File 2: /lib/app/modules/profile/views/profile_view.dart
+
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -125,7 +127,7 @@ class ProfileViews extends GetView<ProfileController> {
                   title: 'Sign Out',
                   icon: Icons.logout,
                   onTap: () {
-                    // Sign out logic
+                    controller.signOut(); // Panggil metode sign out
                   },
                 ),
               ],

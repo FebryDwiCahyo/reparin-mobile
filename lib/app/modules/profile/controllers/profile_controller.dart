@@ -13,4 +13,11 @@ class ProfileController extends GetxController {
       imagePath.value = image.path;
     }
   }
+
+  // Method untuk sign out
+  Future<void> signOut() async {
+    // Implementasi logika sign out, misalnya menghapus token atau data pengguna
+    // Setelah sign out, kembali ke halaman login
+    Get.toNamed('login'); // Ganti '/login' dengan nama route untuk halaman login Anda
+  }
 }
