@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:mobile_app_test/app/routes/app_pages.dart';
+import 'package:mobile_app_test/app/modules/home/views/navbar.dart';
 import '../controllers/home_controller.dart';
 
 
@@ -11,73 +11,146 @@ class HomeView extends GetView<HomeController> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Awog-Awog'),
-        centerTitle: true,
+        elevation: 0,
+        backgroundColor: Colors.teal,
+        title: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            const Text('Location', style: TextStyle(fontSize: 14)),
+            Row(
+              children: const [
+                Icon(Icons.location_on, size: 18),
+                Text('Surabaya, Indonesia', style: TextStyle(fontSize: 18)),
+              ],
+            ),
+          ],
+        ),
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.notifications),
+            onPressed: () {},
+          ),
+        ],
       ),
-      body: GridView.count(
-        crossAxisCount: 2, // Jumlah kolom di grid
-        padding: const EdgeInsets.all(16.0),
+      body: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          _buildFeatureCard(
-            context,
-            title: 'Image Picker',
-            icon: Icons.add_a_photo,
-            onTap: () {
-              Get.toNamed(Routes.IMAGE_PICKER);
-            },
+          // Search bar
+          Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: TextField(
+              decoration: InputDecoration(
+                hintText: 'Find nearby services . . .',
+                prefixIcon: const Icon(Icons.search),
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(10),
+                  borderSide: BorderSide.none,
+                ),
+                filled: true,
+                fillColor: Colors.grey[200],
+              ),
+            ),
           ),
-          // Tambahkan fitur lain di sini
-          _buildFeatureCard(
-            context,
-            title: 'Fitur 2',
-            icon: Icons.featured_play_list,
-            onTap: () {
-              // Tambahkan logika untuk fitur 2
-            },
+
+          // Categories Section
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                const Text('Categories', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+                TextButton(onPressed: () {}, child: const Text('See All')),
+              ],
+            ),
+            
           ),
-          _buildFeatureCard(
-            context,
-            title: 'Fitur 3',
-            icon: Icons.settings,
-            onTap: () {
-              // Tambahkan logika untuk fitur 3
-            },
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                _buildCategoryCard(context, 'Laptop', Icons.laptop),
+                _buildCategoryCard(context, 'Handphone', Icons.phone_android),
+                _buildCategoryCard(context, 'Tablet', Icons.tablet),
+              ],
+            ),
           ),
-          _buildFeatureCard(
-            context,
-            title: 'Fitur 4',
-            icon: Icons.info,
-            onTap: () {
-              // Tambahkan logika untuk fitur 4
-            },
+
+          // Popular Services Section
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                const Text('Popular Services', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+                TextButton(onPressed: () {}, child: const Text('See All')),
+              ],
+            ),
           ),
+          Expanded(
+            child: GridView.count(
+              crossAxisCount: 2,
+              padding: const EdgeInsets.all(16.0),
+              children: [
+                _buildPopularServiceCard(context, rating: 5.0),
+                _buildPopularServiceCard(context, rating: 4.9),
+                _buildPopularServiceCard(context, rating: 5.0),
+                _buildPopularServiceCard(context, rating: 5.0),
+              ],
+            ),
+          ),
+        ],
+      ),
+      bottomNavigationBar: const CustomBottomNavigationBar(), // Use Custom BottomNavigationBar here
+    );
+  }
+
+  // Widget for category card
+  Widget _buildCategoryCard(BuildContext context, String title, IconData icon) {
+    return GestureDetector(
+      onTap: () {},
+      child: Column(
+        children: [
+          Container(
+            decoration: BoxDecoration(
+              color: Colors.teal.shade100,
+              borderRadius: BorderRadius.circular(10),
+            ),
+            padding: const EdgeInsets.all(16),
+            child: Icon(icon, size: 40),
+          ),
+          const SizedBox(height: 8),
+          Text(title),
         ],
       ),
     );
   }
 
-  Widget _buildFeatureCard(BuildContext context, {required String title, required IconData icon, required VoidCallback onTap}) {
+  // Widget for popular services card
+  Widget _buildPopularServiceCard(BuildContext context, {required double rating}) {
     return GestureDetector(
-      onTap: onTap,
+      onTap: () {},
       child: Card(
         elevation: 4,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(10),
         ),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Icon(
-              icon,
-              size: 50,
-              color: Theme.of(context).primaryColor,
-            ),
-            const SizedBox(height: 10),
-            Text(
-              title,
-              style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-            ),
-          ],
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(
+                children: [
+                  const Icon(Icons.star, color: Colors.amber),
+                  const SizedBox(width: 4),
+                  Text(rating.toString(), style: const TextStyle(fontWeight: FontWeight.bold)),
+                ],
+              ),
+              const Spacer(),
+              const Icon(Icons.bookmark_border),
+            ],
+          ),
         ),
       ),
     );
