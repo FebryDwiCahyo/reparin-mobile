@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import 'package:get/get.dart';
 import 'package:reparin_mobile/app/modules/navbar/views/navbar_view.dart';
 import '../controllers/home_controller.dart';
@@ -10,24 +9,40 @@ class HomeView extends GetView<HomeController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
         elevation: 0,
-        backgroundColor: Colors.teal,
+        backgroundColor: const Color(0xFF0093B7),
         title: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Text('Location', style: TextStyle(fontSize: 14)),
+            const Text(
+              'Location',
+              style: TextStyle(
+                fontSize: 14,
+                color: Colors.white,
+                fontWeight: FontWeight.normal,
+              ),
+            ),
             Row(
               children: const [
-                Icon(Icons.location_on, size: 18),
-                Text('Surabaya, Indonesia', style: TextStyle(fontSize: 18)),
+                Icon(Icons.location_on, size: 16, color: Colors.white),
+                SizedBox(width: 4),
+                Text(
+                  'Surabaya, Indonesia',
+                  style: TextStyle(
+                    fontSize: 16,
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
               ],
             ),
           ],
         ),
         actions: [
           IconButton(
-            icon: const Icon(Icons.notifications),
+            icon: const Icon(Icons.notifications_outlined),
             onPressed: () {},
           ),
         ],
@@ -35,130 +50,189 @@ class HomeView extends GetView<HomeController> {
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          // Search bar
-          Padding(
-            padding: const EdgeInsets.all(16.0),
+          Container(
+            padding: const EdgeInsets.only(
+              left: 16,
+              right: 16,
+              top: 16,
+              bottom: 24,
+            ),
+            decoration: const BoxDecoration(
+              color: Color(0xFF0093B7),
+              borderRadius: BorderRadius.only(
+                bottomLeft: Radius.circular(24),
+                bottomRight: Radius.circular(24),
+              ),
+            ),
             child: TextField(
               decoration: InputDecoration(
                 hintText: 'Find nearby services . . .',
-                prefixIcon: const Icon(Icons.search),
+                hintStyle: TextStyle(
+                  color: Colors.grey[600],
+                  fontSize: 14,
+                ),
+                prefixIcon: const Icon(Icons.search, color: Colors.grey),
                 border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(10),
+                  borderRadius: BorderRadius.circular(30),
                   borderSide: BorderSide.none,
                 ),
                 filled: true,
-                fillColor: Colors.grey[200],
+                fillColor: Colors.white,
+                contentPadding: const EdgeInsets.symmetric(vertical: 12),
               ),
             ),
           ),
-
-          // Categories Section
+          const SizedBox(height: 16),
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16.0),
+            padding: const EdgeInsets.symmetric(horizontal: 16),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                const Text('Categories',
-                    style:
-                        TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
-                TextButton(onPressed: () {}, child: const Text('See All')),
+                const Text(
+                  'Categories',
+                  style: TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                TextButton(
+                  onPressed: () {},
+                  child: Text(
+                    'See All',
+                    style: TextStyle(
+                      color: Colors.grey[600],
+                      fontSize: 14,
+                    ),
+                  ),
+                ),
               ],
             ),
           ),
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16.0),
+            padding: const EdgeInsets.symmetric(horizontal: 16),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                _buildCategoryCard(context, 'Laptop', Icons.laptop),
-                _buildCategoryCard(context, 'Handphone', Icons.phone_android),
-                _buildCategoryCard(context, 'Tablet', Icons.tablet),
+                _buildCategoryCard('Laptop', Icons.laptop_mac),
+                _buildCategoryCard('Handphone', Icons.phone_android),
+                _buildCategoryCard('Tablet', Icons.tablet_mac),
               ],
             ),
           ),
-
-          // Popular Services Section
+          const SizedBox(height: 24),
           Padding(
-            padding:
-                const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+            padding: const EdgeInsets.symmetric(horizontal: 16),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                const Text('Popular Services',
-                    style:
-                        TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
-                TextButton(onPressed: () {}, child: const Text('See All')),
+                const Text(
+                  'Popular Services',
+                  style: TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                TextButton(
+                  onPressed: () {},
+                  child: Text(
+                    'See All',
+                    style: TextStyle(
+                      color: Colors.grey[600],
+                      fontSize: 14,
+                    ),
+                  ),
+                ),
               ],
             ),
           ),
           Expanded(
-            child: GridView.count(
-              crossAxisCount: 2,
-              padding: const EdgeInsets.all(16.0),
-              children: [
-                _buildPopularServiceCard(context, rating: 5.0),
-                _buildPopularServiceCard(context, rating: 4.9),
-                _buildPopularServiceCard(context, rating: 5.0),
-                _buildPopularServiceCard(context, rating: 5.0),
-              ],
+            child: Padding(
+              padding: const EdgeInsets.all(16),
+              child: GridView.count(
+                crossAxisCount: 2,
+                mainAxisSpacing: 16,
+                crossAxisSpacing: 16,
+                childAspectRatio: 1.1,
+                children: [
+                  _buildServiceCard(5.0),
+                  _buildServiceCard(5.0),
+                  _buildServiceCard(4.9),
+                  _buildServiceCard(5.0),
+                ],
+              ),
             ),
           ),
         ],
       ),
-      bottomNavigationBar:
-          const CustomBottomNavigationBar(), // Use Custom BottomNavigationBar here
+      bottomNavigationBar: const CustomBottomNavigationBar(), // Kept the original custom navigation bar
     );
   }
 
-  // Widget for category card
-  Widget _buildCategoryCard(BuildContext context, String title, IconData icon) {
-    return GestureDetector(
-      onTap: () {},
-      child: Column(
-        children: [
-          Container(
-            decoration: BoxDecoration(
-              color: Colors.teal.shade100,
-              borderRadius: BorderRadius.circular(10),
-            ),
-            padding: const EdgeInsets.all(16),
-            child: Icon(icon, size: 40),
+  Widget _buildCategoryCard(String title, IconData icon) {
+    return Column(
+      children: [
+        Container(
+          width: 100,
+          height: 100,
+          decoration: BoxDecoration(
+            color: const Color(0xFFE5F6FA),
+            borderRadius: BorderRadius.circular(16),
           ),
-          const SizedBox(height: 8),
-          Text(title),
-        ],
-      ),
-    );
-  }
-
-  // Widget for popular services card
-  Widget _buildPopularServiceCard(BuildContext context,
-      {required double rating}) {
-    return GestureDetector(
-      onTap: () {},
-      child: Card(
-        elevation: 4,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(10),
+          child: Icon(
+            icon,
+            size: 40,
+            color: const Color(0xFF0093B7),
+          ),
         ),
-        child: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+        const SizedBox(height: 8),
+        Text(
+          title,
+          style: const TextStyle(
+            fontSize: 14,
+            fontWeight: FontWeight.w500,
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget _buildServiceCard(double rating) {
+    return Container(
+      decoration: BoxDecoration(
+        color: const Color(0xFFE5F6FA),
+        borderRadius: BorderRadius.circular(16),
+      ),
+      padding: const EdgeInsets.all(12),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Row(
                 children: [
-                  const Icon(Icons.star, color: Colors.amber),
+                  const Icon(
+                    Icons.star,
+                    color: Colors.amber,
+                    size: 20,
+                  ),
                   const SizedBox(width: 4),
-                  Text(rating.toString(),
-                      style: const TextStyle(fontWeight: FontWeight.bold)),
+                  Text(
+                    rating.toString(),
+                    style: const TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 14,
+                    ),
+                  ),
                 ],
               ),
-              const Spacer(),
-              const Icon(Icons.bookmark_border),
+              const Icon(
+                Icons.bookmark_border,
+                color: Color(0xFF0093B7),
+              ),
             ],
           ),
-        ),
+        ],
       ),
     );
   }
