@@ -34,7 +34,7 @@ class ProfileViews extends GetView<ProfileController> {
                 radius: 50,
                 backgroundImage: controller.imagePath.value.isNotEmpty
                     ? FileImage(File(controller.imagePath.value))
-                    : const AssetImage('assets/images/profile_picture.png')
+                    : const AssetImage('assets/default_avatar.png')
                         as ImageProvider,
               );
             }),
