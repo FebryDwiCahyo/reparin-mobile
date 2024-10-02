@@ -1,6 +1,6 @@
 {
-    "name": "tugas_1",
-    "short_name": "tugas_1",
+    "name": "mobile_app_test",
+    "short_name": "mobile_app_test",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",

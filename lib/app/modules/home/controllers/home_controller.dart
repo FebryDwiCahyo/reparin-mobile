@@ -4,6 +4,8 @@ class HomeController extends GetxController {
   //TODO: Implement HomeController
 
   final count = 0.obs;
+
+  get tabController => null;
   @override
   void onInit() {
     super.onInit();
@@ -20,4 +22,6 @@ class HomeController extends GetxController {
   }
 
   void increment() => count.value++;
+
+  buildScreens() {}
 }
