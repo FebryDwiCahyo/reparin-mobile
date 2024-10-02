@@ -1,11 +1,11 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:mobile_app_test/app/modules/home/views/navbar.dart';
+import 'package:tugas_1/app/modules/navbar/views/navbar_view.dart';
 import '../controllers/profile_controller.dart';
 
-class ProfileView extends GetView<ProfileController> {
-  const ProfileView({super.key});
+class ProfileViews extends GetView<ProfileController> {
+  const ProfileViews({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +23,7 @@ class ProfileView extends GetView<ProfileController> {
       body: Column(
         children: [
           const SizedBox(height: 20),
-          
+
           // Profile Picture with Image Picker functionality
           GestureDetector(
             onTap: () {
@@ -34,7 +34,8 @@ class ProfileView extends GetView<ProfileController> {
                 radius: 50,
                 backgroundImage: controller.imagePath.value.isNotEmpty
                     ? FileImage(File(controller.imagePath.value))
-                    : const AssetImage('assets/images/profile_picture.png') as ImageProvider,
+                    : const AssetImage('assets/images/profile_picture.png')
+                        as ImageProvider,
               );
             }),
           ),
@@ -60,6 +61,7 @@ class ProfileView extends GetView<ProfileController> {
                   icon: Icons.person,
                   onTap: () {
                     // Navigate to profile details
+                    Get.toNamed('/profile/edit');
                   },
                 ),
                 _buildProfileOption(
@@ -131,12 +133,16 @@ class ProfileView extends GetView<ProfileController> {
           ),
         ],
       ),
-        bottomNavigationBar: const CustomBottomNavigationBar(), // Use Custom BottomNavigationBar here
+      bottomNavigationBar:
+          const CustomBottomNavigationBar(), // Use Custom BottomNavigationBar here
     );
   }
 
   // Helper function to build profile options
-  Widget _buildProfileOption(BuildContext context, {required String title, required IconData icon, required VoidCallback onTap}) {
+  Widget _buildProfileOption(BuildContext context,
+      {required String title,
+      required IconData icon,
+      required VoidCallback onTap}) {
     return ListTile(
       leading: Icon(icon),
       title: Text(title),

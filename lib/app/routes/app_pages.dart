@@ -1,13 +1,14 @@
 import 'package:get/get.dart';
-import 'package:mobile_app_test/app/modules/home/bindings/login_binding.dart';
-import 'package:mobile_app_test/app/modules/home/bindings/navbar_binding.dart';
-import 'package:mobile_app_test/app/modules/home/bindings/profile_binding.dart';
-import 'package:mobile_app_test/app/modules/home/views/login_view.dart';
-import 'package:mobile_app_test/app/modules/home/views/profile_view.dart';
-import '../modules/home/bindings/image_picker_binding.dart';
-import '../modules/home/views/image_picker_view.dart';
+
 import '../modules/home/bindings/home_binding.dart';
 import '../modules/home/views/home_view.dart';
+import '../modules/login/bindings/login_binding.dart';
+import '../modules/login/views/login_view.dart';
+import '../modules/profile/bindings/profile_binding.dart';
+import '../modules/profile/views/profile_view.dart';
+import '../modules/profileView/bindings/profileView_binding.dart';
+import '../modules/profileView/views/profileView_view.dart';
+import '../modules/navbar/bindings/navbar_binding.dart';
 
 part 'app_routes.dart';
 
@@ -17,7 +18,7 @@ class AppPages {
   static const INITIAL = Routes.LOGIN;
   static const LOGIN = Routes.LOGIN;
   static const PROFILE = Routes.PROFILE;
-
+  static const ProfileView = Routes.profileView;
 
   static final routes = [
     GetPage(
@@ -25,26 +26,16 @@ class AppPages {
       page: () => LoginView(),
       binding: LoginBinding(),
     ),
-    GetPage(
-      name: _Paths.HOME,
-      page: () => HomeView(),
-      bindings: [
-        HomeBinding(),
-        NavbarBinding(),
-      ]
-    ),
-    GetPage(
-      name: _Paths.IMAGE_PICKER,
-      page: () => const ImagePickerView(),
-      binding: ImagePickerBinding(),
-    ),
-    GetPage(
-      name: _Paths.PROFILE,
-      page: () => const ProfileView(),
-      bindings: [
-        ProfileBinding(),
-        NavbarBinding(),
-      ]
-    ),
+    GetPage(name: _Paths.HOME, page: () => HomeView(), bindings: [
+      HomeBinding(),
+      NavbarBinding(),
+    ]),
+    GetPage(name: _Paths.PROFILE, page: () => const ProfileViews(), bindings: [
+      ProfileBinding(),
+      NavbarBinding(),
+    ]),
+    GetPage(name: _Paths.ProfileView, page: () => const ProfileViewView(), bindings: [
+      ProfileViewBinding(),
+    ]),
   ];
 }

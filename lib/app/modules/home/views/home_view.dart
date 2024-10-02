@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
-import 'package:mobile_app_test/app/modules/home/views/navbar.dart';
-import '../controllers/home_controller.dart';
 
+import 'package:get/get.dart';
+import 'package:tugas_1/app/modules/navbar/views/navbar_view.dart';
+import '../controllers/home_controller.dart';
 
 class HomeView extends GetView<HomeController> {
   const HomeView({super.key});
@@ -58,11 +58,12 @@ class HomeView extends GetView<HomeController> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                const Text('Categories', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+                const Text('Categories',
+                    style:
+                        TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
                 TextButton(onPressed: () {}, child: const Text('See All')),
               ],
             ),
-            
           ),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16.0),
@@ -78,11 +79,14 @@ class HomeView extends GetView<HomeController> {
 
           // Popular Services Section
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+            padding:
+                const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                const Text('Popular Services', style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+                const Text('Popular Services',
+                    style:
+                        TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
                 TextButton(onPressed: () {}, child: const Text('See All')),
               ],
             ),
@@ -101,7 +105,8 @@ class HomeView extends GetView<HomeController> {
           ),
         ],
       ),
-      bottomNavigationBar: const CustomBottomNavigationBar(), // Use Custom BottomNavigationBar here
+      bottomNavigationBar:
+          const CustomBottomNavigationBar(), // Use Custom BottomNavigationBar here
     );
   }
 
@@ -127,7 +132,8 @@ class HomeView extends GetView<HomeController> {
   }
 
   // Widget for popular services card
-  Widget _buildPopularServiceCard(BuildContext context, {required double rating}) {
+  Widget _buildPopularServiceCard(BuildContext context,
+      {required double rating}) {
     return GestureDetector(
       onTap: () {},
       child: Card(
@@ -144,7 +150,8 @@ class HomeView extends GetView<HomeController> {
                 children: [
                   const Icon(Icons.star, color: Colors.amber),
                   const SizedBox(width: 4),
-                  Text(rating.toString(), style: const TextStyle(fontWeight: FontWeight.bold)),
+                  Text(rating.toString(),
+                      style: const TextStyle(fontWeight: FontWeight.bold)),
                 ],
               ),
               const Spacer(),
