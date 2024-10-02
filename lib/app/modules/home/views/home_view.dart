@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
-import 'package:tugas_1/app/modules/navbar/views/navbar_view.dart';
+import 'package:reparin_mobile/app/modules/navbar/views/navbar_view.dart';
 import '../controllers/home_controller.dart';
 
 class HomeView extends GetView<HomeController> {
