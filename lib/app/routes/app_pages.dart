@@ -1,5 +1,6 @@
 import 'package:get/get.dart';
-
+import '../modules/category/bindings/category_binding.dart';
+import '../modules/category/views/category_view.dart';
 import '../modules/home/bindings/home_binding.dart';
 import '../modules/home/views/home_view.dart';
 import '../modules/login/bindings/login_binding.dart';
@@ -19,6 +20,7 @@ class AppPages {
   static const LOGIN = Routes.LOGIN;
   static const PROFILE = Routes.PROFILE;
   static const ProfileView = Routes.profileView;
+  static const CATEGORY = Routes.CATEGORY;
 
   static final routes = [
     GetPage(
@@ -26,9 +28,10 @@ class AppPages {
       page: () => LoginView(),
       binding: LoginBinding(),
     ),
-    GetPage(name: _Paths.HOME, page: () => HomeView(), bindings: [
+    GetPage(name: _Paths.HOME, page: () => const HomeView(), bindings: [
       HomeBinding(),
       NavbarBinding(),
+      CategoryBinding(),
     ]),
     GetPage(name: _Paths.PROFILE, page: () => const ProfileViews(), bindings: [
       ProfileBinding(),
@@ -37,5 +40,10 @@ class AppPages {
     GetPage(name: _Paths.ProfileView, page: () => const ProfileViewView(), bindings: [
       ProfileViewBinding(),
     ]),
+    GetPage(
+      name: _Paths.CATEGORY,
+      page: () => const CategoryView(), // Ensure this points to CategoryView
+      binding: CategoryBinding(),
+    ),
   ];
 }

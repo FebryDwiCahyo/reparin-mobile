@@ -96,7 +96,9 @@ class HomeView extends GetView<HomeController> {
                   ),
                 ),
                 TextButton(
-                  onPressed: () {},
+                  onPressed: () {
+                  Get.toNamed('category');
+                  },
                   child: Text(
                     'See All',
                     style: TextStyle(
