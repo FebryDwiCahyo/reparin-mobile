@@ -1,22 +1,22 @@
 import 'package:flutter/material.dart';
 
 class MyBookingsPage extends StatelessWidget {
-  const MyBookingsPage({Key? key}) : super(key: key);
+  const MyBookingsPage({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
-          icon: Icon(Icons.arrow_back),
+          icon: const Icon(Icons.arrow_back),
           onPressed: () {
             // Handle back button press
           },
         ),
-        title: Text('My Bookings'),
+        title: const Text('My Bookings'),
         actions: [
           IconButton(
-            icon: Icon(Icons.search),
+            icon: const Icon(Icons.search),
             onPressed: () {
               // Handle search button press
             },
@@ -37,7 +37,7 @@ class MyBookingsPage extends StatelessWidget {
 
   Widget _buildTabBar() {
     return Container(
-      padding: EdgeInsets.symmetric(vertical: 10),
+      padding: const EdgeInsets.symmetric(vertical: 10),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
@@ -81,9 +81,9 @@ class MyBookingsPage extends StatelessWidget {
   Widget _buildBookingItem(
       String title, String price, String technician, String imagePath) {
     return Card(
-      margin: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+      margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
       child: Padding(
-        padding: EdgeInsets.all(16),
+        padding: const EdgeInsets.all(16),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -98,20 +98,20 @@ class MyBookingsPage extends StatelessWidget {
                     fit: BoxFit.cover,
                   ),
                 ),
-                SizedBox(width: 16),
+                const SizedBox(width: 16),
                 Expanded(
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
                         title,
-                        style: TextStyle(fontWeight: FontWeight.bold),
+                        style: const TextStyle(fontWeight: FontWeight.bold),
                       ),
                       Text(price),
                       Row(
                         children: [
-                          Icon(Icons.person, size: 16),
-                          SizedBox(width: 4),
+                          const Icon(Icons.person, size: 16),
+                          const SizedBox(width: 4),
                           Text(technician),
                         ],
                       ),
@@ -120,15 +120,15 @@ class MyBookingsPage extends StatelessWidget {
                 ),
               ],
             ),
-            SizedBox(height: 16),
+            const SizedBox(height: 16),
             ElevatedButton(
               onPressed: () {
                 // Handle View More button press
               },
-              child: Text('View More'),
               style: ElevatedButton.styleFrom(
-                minimumSize: Size(double.infinity, 36),
+                minimumSize: const Size(double.infinity, 36),
               ),
+              child: const Text('View More'),
             ),
           ],
         ),
@@ -139,7 +139,7 @@ class MyBookingsPage extends StatelessWidget {
   Widget _buildBottomNavigationBar() {
     return BottomNavigationBar(
       type: BottomNavigationBarType.fixed,
-      items: [
+      items: const [
         BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
         BottomNavigationBarItem(
             icon: Icon(Icons.location_on), label: 'Location'),
