@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import '../controllers/bookupcoming_controller.dart';
+import '../controllers/bookcompleted_controller.dart';
 
-class MyBookingsView extends GetView<BookupcomingController> {
-  const MyBookingsView({super.key});
+class BookcompletedViews extends GetView<BookcompletedController> {
+  const BookcompletedViews({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -41,8 +41,8 @@ class MyBookingsView extends GetView<BookupcomingController> {
       child: Obx(() => Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
-              _buildTabItem('Upcoming', controller.currentTab.value == 0),
-              _buildTabItem('Completed', controller.currentTab.value == 1),
+              _buildTabItem('Upcoming', controller.currentTab.value == 1),
+              _buildTabItem('Completed', controller.currentTab.value == 0),
               _buildTabItem('Cancelled', controller.currentTab.value == 2),
             ],
           )),
@@ -126,7 +126,6 @@ class MyBookingsView extends GetView<BookupcomingController> {
               style: ElevatedButton.styleFrom(
                 minimumSize: const Size(double.infinity, 36),
               ),
-              child: const Text('View More'),
             ),
           ],
         ),

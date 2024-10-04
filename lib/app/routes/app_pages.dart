@@ -9,6 +9,22 @@ import '../modules/profile/bindings/profile_binding.dart';
 import '../modules/profile/views/profile_view.dart';
 import '../modules/profileView/bindings/profileView_binding.dart';
 import '../modules/profileView/views/profileView_view.dart';
+import '../modules/bookupcoming/bindings/bookupcoming_binding.dart';
+import '../modules/bookupcoming/views/bookupcoming_views.dart';
+import '../modules/bookcompleted/bindings/bookcompleted_binding.dart';
+import '../modules/bookcompleted/views/bookcompleted_views.dart';
+import '../modules/bookcancelled/bindings/bookcancelled_binding.dart';
+import '../modules/bookcancelled/views/bookcancelled_views.dart';
+import '../modules/paymentsmethod/bindings/paymentmethod_bindings.dart';
+import '../modules/paymentsmethod/views/paymentmethod_views.dart';
+import '../modules/reviewsummary/bindings/reviewsummary_binding.dart';
+import '../modules/reviewsummary/views/reviewsummary_views.dart';
+import '../modules/successbooking/bindings/successbooking_binding.dart';
+import '../modules/successbooking/views/successbooking_views.dart';
+import '../modules/e-receipt/bindings/e-receipt_binding.dart';
+import '../modules/e-receipt/views/e-receipt_views.dart';
+import '../modules/privacypolicy/bindings/privacypolicy_binding.dart';
+import '../modules/privacypolicy/views/privacypolicy_views.dart';
 import '../modules/navbar/bindings/navbar_binding.dart';
 
 part 'app_routes.dart';
@@ -16,11 +32,19 @@ part 'app_routes.dart';
 class AppPages {
   AppPages._();
 
-  static const INITIAL = Routes.LOGIN;
+  static const INITIAL = Routes.PRIVACYPOLICY;
   static const LOGIN = Routes.LOGIN;
   static const PROFILE = Routes.PROFILE;
   static const ProfileView = Routes.profileView;
   static const CATEGORY = Routes.CATEGORY;
+  static const BOOKUPCOMING = Routes.BOOKUPCOMING;
+  static const BOOKCOMPLETED = Routes.BOOKCOMPLETED;
+  static const BOOKCANCELLED = Routes.BOOKCANCELLED;
+  static const PAYMENTMETHOD = Routes.PAYMENTMETHOD;
+  static const REVIEWSUMMARY = Routes.REVIEWSUMMARY;
+  static const SUCCESSBOOKING = Routes.SUCCESSBOOKING;
+  static const ERECEIPT = Routes.ERECEIPT;
+  static const PRIVACYPOLICY = Routes.PRIVACYPOLICY;
 
   static final routes = [
     GetPage(
@@ -37,13 +61,62 @@ class AppPages {
       ProfileBinding(),
       NavbarBinding(),
     ]),
-    GetPage(name: _Paths.ProfileView, page: () => const ProfileViewView(), bindings: [
-      ProfileViewBinding(),
-    ]),
+    GetPage(
+        name: _Paths.ProfileView,
+        page: () => const ProfileViewView(),
+        bindings: [
+          ProfileViewBinding(),
+        ]),
     GetPage(
       name: _Paths.CATEGORY,
       page: () => const CategoryView(), // Ensure this points to CategoryView
       binding: CategoryBinding(),
+    ),
+    GetPage(
+      name: _Paths.BOOKUPCOMING,
+      page: () => const MyBookingsView(), // Ensure this points to CategoryView
+      binding: BookupcomingBinding(),
+    ),
+    GetPage(
+      name: _Paths.BOOKCOMPLETED,
+      page: () =>
+          const BookcompletedViews(), // Ensure this points to CategoryView
+      binding: BookcompletedBinding(),
+    ),
+    GetPage(
+      name: _Paths.BOOKCANCELLED,
+      page: () =>
+          const BookcancelledViews(), // Ensure this points to CategoryView
+      binding: BookcancelledBinding(),
+    ),
+    GetPage(
+      name: _Paths.PAYMENTMETHOD,
+      page: () =>
+          const PaymentmethodView(), // Ensure this points to CategoryView
+      binding: PaymentmethodBinding(),
+    ),
+    GetPage(
+      name: _Paths.REVIEWSUMMARY,
+      page: () =>
+          const ReviewsummaryView(), // Ensure this points to CategoryView
+      binding: ReviewSummaryBinding(),
+    ),
+    GetPage(
+      name: _Paths.SUCCESSBOOKING,
+      page: () =>
+          const SuccessbookingView(), // Ensure this points to CategoryView
+      binding: SuccessbookingBinding(),
+    ),
+    GetPage(
+      name: _Paths.ERECEIPT,
+      page: () => const EreceiptView(), // Ensure this points to CategoryView
+      binding: EreceiptBinding(),
+    ),
+    GetPage(
+      name: _Paths.PRIVACYPOLICY,
+      page: () =>
+          const PrivacypolicyView(), // Ensure this points to CategoryView
+      binding: PrivacypolicyBinding(),
     ),
   ];
 }

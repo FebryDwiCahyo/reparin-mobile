@@ -1,6 +1,6 @@
 import 'package:get/get.dart';
 
-class BookupcomingController extends GetxController {
+class BookcancelledController extends GetxController {
   final currentTab = 0.obs;
   final currentNavIndex = 2.obs;
   final bookings = <Booking>[].obs;
@@ -11,9 +11,7 @@ class BookupcomingController extends GetxController {
     super.onInit();
     // Initialize bookings data
     bookings.addAll([
-      Booking('Mobile Device Repair', '\$15.00', 'Jenny Wilson',
-          'assets/repair1.jpg'),
-      Booking('Laptop Repair', '\$15.00', 'Bob', 'assets/repair6.webp'),
+      Booking('Smartphone Repair', '\$15.00', 'Bob', 'assets/repair5.jpeg'),
     ]);
   }
 
