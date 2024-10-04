@@ -126,6 +126,7 @@ class MyBookingsView extends GetView<BookupcomingController> {
               style: ElevatedButton.styleFrom(
                 minimumSize: const Size(double.infinity, 36),
               ),
+              child: const Text('View More'),
             ),
           ],
         ),

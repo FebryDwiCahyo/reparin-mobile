@@ -10,7 +10,7 @@ class LoginView extends GetView<LoginController> {
     // Controllers for username and password text fields
     final TextEditingController emailController = TextEditingController();
     final TextEditingController passwordController = TextEditingController();
-    bool _obscurePassword = true;
+    bool obscurePassword = true;
 
     return Scaffold(
       body: Padding(
@@ -55,7 +55,7 @@ class LoginView extends GetView<LoginController> {
               builder: (context, setState) {
                 return TextField(
                   controller: passwordController,
-                  obscureText: _obscurePassword,
+                  obscureText: obscurePassword,
                   decoration: InputDecoration(
                     labelText: 'Password',
                     hintText: 'Enter Password',
@@ -68,11 +68,11 @@ class LoginView extends GetView<LoginController> {
                     ),
                     suffixIcon: IconButton(
                       icon: Icon(
-                        _obscurePassword ? Icons.visibility_off : Icons.visibility,
+                        obscurePassword ? Icons.visibility_off : Icons.visibility,
                       ),
                       onPressed: () {
                         setState(() {
-                          _obscurePassword = !_obscurePassword;
+                          obscurePassword = !obscurePassword;
                         });
                       },
                     ),
