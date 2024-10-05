@@ -51,7 +51,16 @@ class MyBookingsView extends GetView<BookupcomingController> {
 
   Widget _buildTabItem(String title, bool isSelected) {
     return GestureDetector(
-      onTap: () => controller.changeTab(title),
+      onTap: () {
+        if (title == 'Completed') {
+          Get.toNamed('/bookcompleted'); // Ganti dengan rute yang sesuai
+        }
+        if (title == 'Cancelled') {
+          Get.toNamed('/bookcancelled'); // Ganti dengan rute yang sesuai
+        } else {
+          controller.changeTab(title);
+        }
+      },
       child: Text(
         title,
         style: TextStyle(

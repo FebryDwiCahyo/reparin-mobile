@@ -190,7 +190,9 @@ class AddCardView extends GetView<AddCardController> {
               child: SizedBox(
                 width: double.infinity,
                 child: ElevatedButton(
-                  onPressed: controller.onContinuePressed,
+                  onPressed: () {
+                    Get.toNamed('/reviewsummary');
+                  },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: const Color(0xFF0083B3),
                     foregroundColor: Colors.white,

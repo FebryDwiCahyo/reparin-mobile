@@ -139,7 +139,7 @@ class ConfirmAddressView extends GetView<ConfirmAddressController> {
                     width: double.infinity,
                     child: ElevatedButton(
                       onPressed: () {
-                        Get.toNamed('/reviewsummary');
+                        Get.toNamed('/paymentmethod');
                       },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: const Color(0xFF0083B3),

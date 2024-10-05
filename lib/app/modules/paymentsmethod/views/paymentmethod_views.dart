@@ -18,7 +18,7 @@ class PaymentmethodView extends GetView<PaymentmethodControllers> {
       body: Column(
         children: [
           const SizedBox(height: 20),
-          _buildPaymentOptions(), // Membangun opsi pembayaran
+          _buildPaymentOptions(), // Build payment options
           const SizedBox(height: 20),
           Obx(() => Text(
               'Selected Payment: ${controller.selectedPaymentMethod.value}',
@@ -34,8 +34,7 @@ class PaymentmethodView extends GetView<PaymentmethodControllers> {
         const Align(
           alignment: Alignment.centerLeft,
           child: Padding(
-            padding: EdgeInsets.only(
-                left: 16), // Add left padding to align the title
+            padding: EdgeInsets.only(left: 16), // Add left padding to align the title
             child: Text(
               'Cash',
               style: TextStyle(
@@ -45,13 +44,11 @@ class PaymentmethodView extends GetView<PaymentmethodControllers> {
             ),
           ),
         ),
-        _buildPaymentOption(
-            'Cash', 'assets/cash.png', 0), // Pass value for the radio button
+        _buildPaymentOption('Cash', 'assets/cash.png', 0), // Pass value for the radio button
         const Align(
           alignment: Alignment.centerLeft,
           child: Padding(
-            padding: EdgeInsets.only(
-                left: 16), // Add left padding to align the title
+            padding: EdgeInsets.only(left: 16), // Add left padding to align the title
             child: Text(
               'Wallet',
               style: TextStyle(
@@ -61,13 +58,11 @@ class PaymentmethodView extends GetView<PaymentmethodControllers> {
             ),
           ),
         ),
-        _buildPaymentOption('Wallet', 'assets/wallet.png',
-            1), // Pass value for the radio button
+        _buildPaymentOption('Wallet', 'assets/wallet.png', 1), // Pass value for the radio button
         const Align(
           alignment: Alignment.centerLeft,
           child: Padding(
-            padding: EdgeInsets.only(
-                left: 16), // Add left padding to align the title
+            padding: EdgeInsets.only(left: 16), // Add left padding to align the title
             child: Text(
               'Credit & Debit Card',
               style: TextStyle(
@@ -77,15 +72,21 @@ class PaymentmethodView extends GetView<PaymentmethodControllers> {
             ),
           ),
         ),
-        _buildPaymentOption('Add Card', 'assets/card.png',
-            2), // Pass value for the radio button
+        _buildPaymentOption('Add Card', 'assets/card.png', 2, isAddCard: true), // Pass value for the radio button
       ],
     );
   }
 
-  Widget _buildPaymentOption(String method, String imagePath, int value) {
+  Widget _buildPaymentOption(String method, String imagePath, int value, {bool isAddCard = false}) {
     return GestureDetector(
-      onTap: () => controller.changePaymentMethod(value),
+      onTap: () {
+        if (isAddCard) {
+          // Navigate to the Add Card page
+          Get.toNamed('/payment/method/card');
+        } else {
+          controller.changePaymentMethod(value);
+        }
+      },
       child: Card(
         margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
         child: Padding(

@@ -3,7 +3,7 @@ part of 'app_pages.dart';
 
 abstract class Routes {
   Routes._();
-  static const HOME = _Paths.HOMEMERDEKA;
+  static const HOME = _Paths.HOME;
   static const PROMO = _Paths.PROMO;
   static const LOGIN = _Paths.LOGIN;
   static const PROFILE = _Paths.PROFILE;

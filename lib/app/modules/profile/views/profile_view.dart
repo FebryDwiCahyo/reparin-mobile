@@ -87,7 +87,8 @@ class ProfileViews extends GetView<ProfileController> {
                   title: 'My Bookings',
                   icon: Icons.calendar_today,
                   onTap: () {
-                    // Navigate to bookings
+                    // Navigate to profile details
+                    Get.toNamed('/bookupcoming');
                   },
                 ),
                 _buildProfileOption(
