@@ -11,10 +11,12 @@ abstract class Routes {
   static const BOOKMARK = _Paths.BOOKMARK;
   static const CHAT = _Paths.CHAT;
   static const CATEGORY = _Paths.CATEGORY;
+  static const bookService = _Paths.BookService;
   static const BOOKUPCOMING = _Paths.BOOKUPCOMING;
   static const BOOKCOMPLETED = _Paths.BOOKCOMPLETED;
   static const BOOKCANCELLED = _Paths.BOOKCANCELLED;
   static const PAYMENTMETHOD = _Paths.PAYMENTMETHOD;
+  static const addCard = _Paths.addCard;  // Additional path for adding a payment card.  // Additional path for adding a payment card.  // Additional path for adding a payment card.  // Additional path for adding a payment card.  // Additional path for adding a payment card.  // Additional path for adding a payment card.  // Additional path for adding a payment card.  // Additional path for adding a payment card.  // Additional path for adding a payment card
   static const REVIEWSUMMARY = _Paths.REVIEWSUMMARY;
   static const SUCCESSBOOKING = _Paths.SUCCESSBOOKING;
   static const ERECEIPT = _Paths.ERECEIPT;
@@ -31,10 +33,12 @@ abstract class _Paths {
   static const BOOKMARK = '/bookmark';
   static const CHAT = '/chat';
   static const CATEGORY = '/category';
+  static const BookService = '/book/service';
   static const BOOKUPCOMING = '/bookupcoming';
   static const BOOKCOMPLETED = '/bookcompleted';
   static const BOOKCANCELLED = '/bookcancelled';
   static const PAYMENTMETHOD = '/paymentmethod';
+  static const addCard = '/payment/method/card';
   static const REVIEWSUMMARY = '/reviewsummary';
   static const SUCCESSBOOKING = '/successbooking';
   static const ERECEIPT = '/ereceipt';
