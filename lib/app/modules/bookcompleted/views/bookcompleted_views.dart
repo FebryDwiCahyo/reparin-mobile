@@ -122,10 +122,10 @@ class BookcompletedViews extends GetView<BookcompletedController> {
             const SizedBox(height: 16),
             ElevatedButton(
               onPressed: () => controller.viewMoreDetails(title),
-              child: const Text('View More'),
               style: ElevatedButton.styleFrom(
                 minimumSize: const Size(double.infinity, 36),
               ),
+              child: const Text('View More'),
             ),
           ],
         ),

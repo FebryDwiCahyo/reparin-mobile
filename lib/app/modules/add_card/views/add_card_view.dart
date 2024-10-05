@@ -7,7 +7,7 @@ import '../controllers/add_card_controller.dart';
 import '../widgets/credit_card_widget.dart';
 
 class AddCardView extends GetView<AddCardController> {
-  const AddCardView({Key? key}) : super(key: key);
+  const AddCardView({super.key});
 
   @override
   Widget build(BuildContext context) {

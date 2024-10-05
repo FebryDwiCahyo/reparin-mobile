@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import '../controllers/reviewsummary_controller.dart';
 
 class ReviewsummaryView extends GetView<ReviewsummaryController> {
-  const ReviewsummaryView({Key? key}) : super(key: key);
+  const ReviewsummaryView({super.key});
 
   @override
   Widget build(BuildContext context) {

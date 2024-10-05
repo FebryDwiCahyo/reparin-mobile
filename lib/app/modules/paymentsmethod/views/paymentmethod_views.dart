@@ -31,9 +31,9 @@ class PaymentmethodView extends GetView<PaymentmethodControllers> {
   Widget _buildPaymentOptions() {
     return Column(
       children: [
-        Align(
+        const Align(
           alignment: Alignment.centerLeft,
-          child: const Padding(
+          child: Padding(
             padding: EdgeInsets.only(
                 left: 16), // Add left padding to align the title
             child: Text(
@@ -47,9 +47,9 @@ class PaymentmethodView extends GetView<PaymentmethodControllers> {
         ),
         _buildPaymentOption(
             'Cash', 'assets/cash.png', 0), // Pass value for the radio button
-        Align(
+        const Align(
           alignment: Alignment.centerLeft,
-          child: const Padding(
+          child: Padding(
             padding: EdgeInsets.only(
                 left: 16), // Add left padding to align the title
             child: Text(
@@ -63,9 +63,9 @@ class PaymentmethodView extends GetView<PaymentmethodControllers> {
         ),
         _buildPaymentOption('Wallet', 'assets/wallet.png',
             1), // Pass value for the radio button
-        Align(
+        const Align(
           alignment: Alignment.centerLeft,
-          child: const Padding(
+          child: Padding(
             padding: EdgeInsets.only(
                 left: 16), // Add left padding to align the title
             child: Text(

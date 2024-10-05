@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import '../controllers/successbooking_controller.dart';
 
 class SuccessbookingView extends GetView<SuccessbookingController> {
-  const SuccessbookingView({Key? key}) : super(key: key);
+  const SuccessbookingView({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -23,48 +23,48 @@ class SuccessbookingView extends GetView<SuccessbookingController> {
             Container(
               width: 80,
               height: 80,
-              decoration: BoxDecoration(
+              decoration: const BoxDecoration(
                 color: Colors.blue,
                 shape: BoxShape.circle,
               ),
-              child: Icon(
+              child: const Icon(
                 Icons.check,
                 color: Colors.white,
                 size: 50,
               ),
             ),
-            SizedBox(height: 20),
-            Text(
+            const SizedBox(height: 20),
+            const Text(
               'Congratulations!',
               style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
             ),
-            SizedBox(height: 10),
-            Text(
+            const SizedBox(height: 10),
+            const Text(
               'Your Mobile Device Repair Booked.',
               style: TextStyle(fontSize: 16),
             ),
-            Text(
+            const Text(
               'You can check your booking on the menu Profile.',
               style: TextStyle(fontSize: 16),
             ),
-            SizedBox(height: 40),
+            const SizedBox(height: 40),
             ElevatedButton(
               onPressed: () => controller.viewEReceipt(),
-              child: Text('View E-Receipt'),
               style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.blue,
-                minimumSize: Size(200, 50),
+                minimumSize: const Size(200, 50),
               ),
+              child: const Text('View E-Receipt'),
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             OutlinedButton(
               onPressed: () => controller.viewMyBookings(),
-              child: Text('View My Bookings'),
               style: OutlinedButton.styleFrom(
                 foregroundColor: Colors.blue,
-                side: BorderSide(color: Colors.blue),
-                minimumSize: Size(200, 50),
+                side: const BorderSide(color: Colors.blue),
+                minimumSize: const Size(200, 50),
               ),
+              child: const Text('View My Bookings'),
             ),
           ],
         ),
