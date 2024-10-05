@@ -4,7 +4,7 @@ import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import '../controllers/servicePage_controller.dart';
 
 class ServicePageView extends GetView<ServicePageController> {
-  const ServicePageView({Key? key}) : super(key: key);
+  const ServicePageView({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -230,12 +230,12 @@ class ServicePageView extends GetView<ServicePageController> {
                 fit: BoxFit.cover,
               ),
             ),
-            Expanded(
+            const Expanded(
               child: Padding(
-                padding: const EdgeInsets.all(8.0),
+                padding: EdgeInsets.all(8.0),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
-                  children: const [
+                  children: [
                     Text(
                       'Bob',
                       style: TextStyle(
@@ -398,20 +398,20 @@ class ServicePageView extends GetView<ServicePageController> {
                 borderRadius: BorderRadius.circular(12),
               ),
               elevation: 2,
-              child: Padding(
-                padding: const EdgeInsets.all(16.0),
+              child: const Padding(
+                padding: EdgeInsets.all(16.0),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Row(
                       children: [
-                        const CircleAvatar(
+                        CircleAvatar(
                           backgroundImage: NetworkImage(
                               'https://picsum.photos/seed/751/600'),
                           radius: 20,
                         ),
-                        const SizedBox(width: 8),
-                        const Column(
+                        SizedBox(width: 8),
+                        Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
@@ -424,9 +424,9 @@ class ServicePageView extends GetView<ServicePageController> {
                             ),
                           ],
                         ),
-                        const Spacer(),
+                        Spacer(),
                         Row(
-                          children: const [
+                          children: [
                             Icon(Icons.star, color: Colors.amber, size: 20),
                             Text('4.9',
                                 style: TextStyle(fontWeight: FontWeight.bold)),
@@ -434,8 +434,8 @@ class ServicePageView extends GetView<ServicePageController> {
                         ),
                       ],
                     ),
-                    const SizedBox(height: 8),
-                    const Text(
+                    SizedBox(height: 8),
+                    Text(
                       'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
                       style: TextStyle(fontSize: 14),
                     ),

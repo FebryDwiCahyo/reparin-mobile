@@ -4,7 +4,7 @@ import 'package:barcode_widget/barcode_widget.dart';
 import '../controllers/e-receipt_controller.dart';
 
 class EreceiptView extends GetView<EreceiptController> {
-  const EreceiptView({Key? key}) : super(key: key);
+  const EreceiptView({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -49,11 +49,11 @@ class EreceiptView extends GetView<EreceiptController> {
               const SizedBox(height: 20),
               ElevatedButton(
                 onPressed: controller.downloadReceipt,
-                child: const Text('Download E-Receipt'),
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.blue,
                   padding: const EdgeInsets.symmetric(vertical: 16),
                 ),
+                child: const Text('Download E-Receipt'),
               ),
             ],
           ),

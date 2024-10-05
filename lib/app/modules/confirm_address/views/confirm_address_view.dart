@@ -6,7 +6,7 @@ import 'package:get/get.dart';
 import '../controllers/confirm_address_controller.dart';
 
 class ConfirmAddressView extends GetView<ConfirmAddressController> {
-  const ConfirmAddressView({Key? key}) : super(key: key);
+  const ConfirmAddressView({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -18,13 +18,13 @@ class ConfirmAddressView extends GetView<ConfirmAddressController> {
           backgroundColor: Colors.white,
           elevation: 0,
           leading: IconButton(
-            icon: Icon(
+            icon: const Icon(
               Icons.arrow_circle_left_outlined,
               color: Colors.black,
             ),
             onPressed: () => Get.back(),
           ),
-          title: Text(
+          title: const Text(
             'Confirm Address',
             style: TextStyle(
               color: Colors.black,
@@ -44,30 +44,33 @@ class ConfirmAddressView extends GetView<ConfirmAddressController> {
                     children: [
                       // Address List Items
                       Obx(() => Column(
-                        children: [
-                          _buildAddressItem(
-                            'Home',
-                            'Jl. A. Yani, Surabaya, Indonesia',
-                            controller.homeAddressSelected,
-                            (value) => controller.setHomeAddressSelected(value),
-                          ),
-                          SizedBox(height: 11),
-                          _buildAddressItem(
-                            'Parent\'s House',
-                            'Jl. A. Yani, Surabaya, Indonesia',
-                            controller.parentsAddressSelected,
-                            (value) => controller.setParentsAddressSelected(value),
-                          ),
-                          SizedBox(height: 11),
-                          _buildAddressItem(
-                            'Brother House',
-                            'Jl. A. Yani, Surabaya, Indonesia',
-                            controller.brotherAddressSelected,
-                            (value) => controller.setBrotherAddressSelected(value),
-                          ),
-                        ],
-                      )),
-                      
+                            children: [
+                              _buildAddressItem(
+                                'Home',
+                                'Jl. A. Yani, Surabaya, Indonesia',
+                                controller.homeAddressSelected,
+                                (value) =>
+                                    controller.setHomeAddressSelected(value),
+                              ),
+                              const SizedBox(height: 11),
+                              _buildAddressItem(
+                                'Parent\'s House',
+                                'Jl. A. Yani, Surabaya, Indonesia',
+                                controller.parentsAddressSelected,
+                                (value) =>
+                                    controller.setParentsAddressSelected(value),
+                              ),
+                              const SizedBox(height: 11),
+                              _buildAddressItem(
+                                'Brother House',
+                                'Jl. A. Yani, Surabaya, Indonesia',
+                                controller.brotherAddressSelected,
+                                (value) =>
+                                    controller.setBrotherAddressSelected(value),
+                              ),
+                            ],
+                          )),
+
                       // Add New Address Button
                       Padding(
                         padding: const EdgeInsets.symmetric(vertical: 32.0),
@@ -80,10 +83,10 @@ class ConfirmAddressView extends GetView<ConfirmAddressController> {
                               color: Colors.grey[100],
                               borderRadius: BorderRadius.circular(20),
                               border: Border.all(
-                                color: Color(0xFF0083B3),
+                                color: const Color(0xFF0083B3),
                               ),
                             ),
-                            child: Center(
+                            child: const Center(
                               child: Text(
                                 '+ Add New Delivery Address',
                                 style: TextStyle(
@@ -100,69 +103,70 @@ class ConfirmAddressView extends GetView<ConfirmAddressController> {
                 ),
               ),
             ),
-            
+
             // Continue Button Container at bottom
             ClipRRect(
-          borderRadius: const BorderRadius.only(
-            topLeft: Radius.circular(30),
-            topRight: Radius.circular(30),
-          ),
-          child: BackdropFilter(
-            filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
-            child: Container(
-              padding: const EdgeInsets.all(16),
-              decoration: BoxDecoration(
-                color: Colors.white.withOpacity(0.8),
-                border: Border(
-                  top: BorderSide(
-                    color: Colors.grey.withOpacity(0.2),
-                    width: 1,
-                  ),
-                  left: BorderSide(
-                    color: Colors.grey.withOpacity(0.2),
-                    width: 1,
-                  ),
-                  right: BorderSide(
-                    color: Colors.grey.withOpacity(0.2),
-                    width: 1,
-                  ),
-                ),
-                borderRadius: const BorderRadius.only(
-                  topLeft: Radius.circular(30),
-                  topRight: Radius.circular(30),
-                ),
+              borderRadius: const BorderRadius.only(
+                topLeft: Radius.circular(30),
+                topRight: Radius.circular(30),
               ),
-              child: SizedBox(
-                width: double.infinity,
-                child: ElevatedButton(
-                  onPressed: () => controller.continuePressed(),
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: const Color(0xFF0083B3),
-                    foregroundColor: Colors.white,
-                    padding: const EdgeInsets.symmetric(vertical: 16),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(30),
+              child: BackdropFilter(
+                filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
+                child: Container(
+                  padding: const EdgeInsets.all(16),
+                  decoration: BoxDecoration(
+                    color: Colors.white.withOpacity(0.8),
+                    border: Border(
+                      top: BorderSide(
+                        color: Colors.grey.withOpacity(0.2),
+                        width: 1,
+                      ),
+                      left: BorderSide(
+                        color: Colors.grey.withOpacity(0.2),
+                        width: 1,
+                      ),
+                      right: BorderSide(
+                        color: Colors.grey.withOpacity(0.2),
+                        width: 1,
+                      ),
+                    ),
+                    borderRadius: const BorderRadius.only(
+                      topLeft: Radius.circular(30),
+                      topRight: Radius.circular(30),
                     ),
                   ),
-                  child: const Text(
-                    'Continue',
-                    style: TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.bold,
+                  child: SizedBox(
+                    width: double.infinity,
+                    child: ElevatedButton(
+                      onPressed: () => controller.continuePressed(),
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: const Color(0xFF0083B3),
+                        foregroundColor: Colors.white,
+                        padding: const EdgeInsets.symmetric(vertical: 16),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(30),
+                        ),
+                      ),
+                      child: const Text(
+                        'Continue',
+                        style: TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
                     ),
                   ),
                 ),
               ),
             ),
-          ),
-        ),
           ],
         ),
       ),
     );
   }
 
-  Widget _buildAddressItem(String title, String address, RxBool selected, Function(bool?) onChanged) {
+  Widget _buildAddressItem(String title, String address, RxBool selected,
+      Function(bool?) onChanged) {
     return Container(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(8),
@@ -172,8 +176,8 @@ class ConfirmAddressView extends GetView<ConfirmAddressController> {
       ),
       child: Row(
         children: [
-          Padding(
-            padding: const EdgeInsets.only(left: 16.0),
+          const Padding(
+            padding: EdgeInsets.only(left: 16.0),
             child: Icon(
               Icons.location_on,
               color: Color(0xFF0083B3),
@@ -186,7 +190,7 @@ class ConfirmAddressView extends GetView<ConfirmAddressController> {
               onChanged: onChanged,
               title: Text(
                 title,
-                style: TextStyle(
+                style: const TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.w600,
                 ),
@@ -199,7 +203,7 @@ class ConfirmAddressView extends GetView<ConfirmAddressController> {
                 ),
               ),
               controlAffinity: ListTileControlAffinity.trailing,
-              contentPadding: EdgeInsets.symmetric(horizontal: 16),
+              contentPadding: const EdgeInsets.symmetric(horizontal: 16),
             ),
           ),
         ],

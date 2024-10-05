@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import '../controllers/privacypolicy_controller.dart';
 
 class PrivacypolicyView extends GetView<PrivacypolicyController> {
-  const PrivacypolicyView({Key? key}) : super(key: key);
+  const PrivacypolicyView({super.key});
 
   @override
   Widget build(BuildContext context) {

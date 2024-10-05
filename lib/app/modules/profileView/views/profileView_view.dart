@@ -44,15 +44,16 @@ class ProfileViewView extends GetView<ProfileViewController> {
                       Center(
                         child: Stack(
                           children: [
-                            Obx(() {
-                              return CircleAvatar(
-                                radius: 50,
-                                backgroundImage: controller.imagePath.value.isNotEmpty
-                                    ? FileImage(File(controller.imagePath.value))
-                                    : const AssetImage('assets/default_avatar.png')
-                                        as ImageProvider,
-                              );
-                            }),
+                            Obx(() => CircleAvatar(
+                                  radius: 50,
+                                  backgroundImage: controller.profile.value
+                                          .imagePath.value.isNotEmpty
+                                      ? FileImage(File(controller
+                                          .profile.value.imagePath.value))
+                                      : const AssetImage(
+                                              'assets/default_avatar.png')
+                                          as ImageProvider,
+                                )),
                             Positioned(
                               bottom: 0,
                               right: 0,

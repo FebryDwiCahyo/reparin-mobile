@@ -44,13 +44,13 @@ class ProfileViews extends GetView<ProfileController> {
           const SizedBox(height: 10),
 
           // User Name
-          const Text(
-            'Dave',
-            style: TextStyle(
-              fontSize: 20,
-              fontWeight: FontWeight.bold,
-            ),
-          ),
+          Obx(() => Text(
+                controller.name.value, // Ambil data 'name'
+                style: const TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                ),
+              )),
           const SizedBox(height: 30),
 
           // Profile Options List
