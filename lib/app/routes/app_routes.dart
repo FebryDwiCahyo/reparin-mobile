@@ -22,6 +22,7 @@ abstract class Routes {
   static const ERECEIPT = _Paths.ERECEIPT;
   static const PRIVACYPOLICY = _Paths.PRIVACYPOLICY;
   static const CONFIRM_ADDRESS = _Paths.CONFIRM_ADDRESS;
+  static const servicePage = _Paths.servicePage;
 }
 
 abstract class _Paths {
@@ -45,4 +46,5 @@ abstract class _Paths {
   static const ERECEIPT = '/ereceipt';
   static const PRIVACYPOLICY = '/privacypolicy';
   static const CONFIRM_ADDRESS = '/confirm_address';
+  static const servicePage = '/service/page';
 }
