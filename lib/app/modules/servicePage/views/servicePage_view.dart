@@ -14,10 +14,8 @@ class ServicePageView extends GetView<ServicePageController> {
         backgroundColor: Theme.of(context).scaffoldBackgroundColor,
         body: Stack(
           children: [
-            // Main content with CustomScrollView
             CustomScrollView(
               slivers: [
-                // Header image as SliverAppBar
                 SliverAppBar(
                   expandedHeight: 300.0,
                   pinned: true,
@@ -42,23 +40,17 @@ class ServicePageView extends GetView<ServicePageController> {
                     ),
                   ],
                 ),
-                // Service details
                 SliverToBoxAdapter(
                   child: _buildServiceDetails(context),
                 ),
-                // Tab bar section
                 SliverToBoxAdapter(
                   child: _buildTabBarSection(context),
                 ),
-                // Spacer for bottom bar
-                SliverFillRemaining(
-                  hasScrollBody: false,
-                  fillOverscroll: true,
-                  child: SizedBox(height: 100), // Height of bottom bar
+                const SliverToBoxAdapter(
+                  child: SizedBox(height: 100),
                 ),
               ],
             ),
-            // Bottom bar positioned at the bottom
             Positioned(
               left: 0,
               right: 0,
@@ -153,31 +145,34 @@ class ServicePageView extends GetView<ServicePageController> {
   }
 
   Widget _buildTabBarSection(BuildContext context) {
-    return Column(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        TabBar(
-          controller: controller.tabController,
-          labelColor: const Color(0xFF0083B3),
-          unselectedLabelColor: Colors.grey,
-          tabs: const [
-            Tab(text: 'About'),
-            Tab(text: 'Gallery'),
-            Tab(text: 'Review'),
-          ],
-        ),
-        SizedBox(
-          height: 300.0,
-          child: TabBarView(
+    return DefaultTabController(
+      length: 3,
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          TabBar(
             controller: controller.tabController,
-            children: [
-              SingleChildScrollView(child: _buildAboutTab()),
-              SingleChildScrollView(child: _buildGalleryTab()),
-              SingleChildScrollView(child: _buildReviewTab()),
+            labelColor: const Color(0xFF0083B3),
+            unselectedLabelColor: Colors.grey,
+            tabs: const [
+              Tab(text: 'About'),
+              Tab(text: 'Gallery'),
+              Tab(text: 'Review'),
             ],
           ),
-        ),
-      ],
+          SizedBox(
+            height: 400.0, // Increased height to accommodate content
+            child: TabBarView(
+              controller: controller.tabController,
+              children: [
+                _buildAboutTab(),
+                _buildGalleryTab(),
+                _buildReviewTab(),
+              ],
+            ),
+          ),
+        ],
+      ),
     );
   }
 
@@ -287,6 +282,7 @@ class ServicePageView extends GetView<ServicePageController> {
     return Padding(
       padding: const EdgeInsets.fromLTRB(24.0, 24.0, 24.0, 0.0),
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -301,7 +297,7 @@ class ServicePageView extends GetView<ServicePageController> {
               ),
               TextButton(
                 onPressed: () {
-                  Get.toNamed('/chat');
+                  Get.toNamed('/gallery');
                 },
                 child: const Text(
                   'View All',
@@ -312,12 +308,16 @@ class ServicePageView extends GetView<ServicePageController> {
               ),
             ],
           ),
+          const SizedBox(height: 16),
           Expanded(
-            child: GridView.count(
-              crossAxisCount: 2,
-              crossAxisSpacing: 10.0,
-              mainAxisSpacing: 10.0,
-              children: List.generate(4, (index) {
+            child: GridView.builder(
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 2,
+                crossAxisSpacing: 10.0,
+                mainAxisSpacing: 10.0,
+              ),
+              itemCount: 4,
+              itemBuilder: (context, index) {
                 return ClipRRect(
                   borderRadius: BorderRadius.circular(8.0),
                   child: Image.network(
@@ -325,7 +325,7 @@ class ServicePageView extends GetView<ServicePageController> {
                     fit: BoxFit.cover,
                   ),
                 );
-              }),
+              },
             ),
           ),
         ],
@@ -340,64 +340,59 @@ class ServicePageView extends GetView<ServicePageController> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // Search Bar
             TextField(
               decoration: InputDecoration(
-                prefixIcon: Icon(Icons.search),
+                prefixIcon: const Icon(Icons.search),
                 hintText: 'Search in reviews',
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(12),
                 ),
               ),
             ),
-            SizedBox(height: 16),
-
-            // Filter Buttons with Horizontal Scroll
+            const SizedBox(height: 16),
             SingleChildScrollView(
               scrollDirection: Axis.horizontal,
               child: Row(
                 children: [
                   ElevatedButton.icon(
                     onPressed: () {},
-                    icon: Icon(Icons.verified),
-                    label: Text('Verified'),
+                    icon: const Icon(Icons.verified),
+                    label: const Text('Verified'),
                     style: ElevatedButton.styleFrom(
-                      shape: StadiumBorder(),
+                      shape: const StadiumBorder(),
                     ),
                   ),
-                  SizedBox(width: 8),
+                  const SizedBox(width: 8),
                   ElevatedButton.icon(
                     onPressed: () {},
-                    icon: Icon(Icons.update),
-                    label: Text('Latest'),
+                    icon: const Icon(Icons.update),
+                    label: const Text('Latest'),
                     style: ElevatedButton.styleFrom(
-                      shape: StadiumBorder(),
+                      shape: const StadiumBorder(),
                     ),
                   ),
-                  SizedBox(width: 8),
+                  const SizedBox(width: 8),
                   ElevatedButton.icon(
                     onPressed: () {},
-                    icon: Icon(Icons.photo),
-                    label: Text('With Photos'),
+                    icon: const Icon(Icons.photo),
+                    label: const Text('With Photos'),
                     style: ElevatedButton.styleFrom(
-                      shape: StadiumBorder(),
+                      shape: const StadiumBorder(),
                     ),
                   ),
-                  SizedBox(width: 8),
+                  const SizedBox(width: 8),
                   ElevatedButton.icon(
                     onPressed: () {},
-                    icon: Icon(Icons.star),
-                    label: Text('Rating Only'),
+                    icon: const Icon(Icons.star),
+                    label: const Text('Rating Only'),
                     style: ElevatedButton.styleFrom(
-                      shape: StadiumBorder(),
+                      shape: const StadiumBorder(),
                     ),
                   ),
                 ],
               ),
             ),
-            SizedBox(height: 16),
-
-            // Review Card
+            const SizedBox(height: 16),
             Card(
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(12),
@@ -410,13 +405,13 @@ class ServicePageView extends GetView<ServicePageController> {
                   children: [
                     Row(
                       children: [
-                        CircleAvatar(
+                        const CircleAvatar(
                           backgroundImage: NetworkImage(
-                              'https://picsum.photos/seed/751/600'), // Placeholder profile image
+                              'https://picsum.photos/seed/751/600'),
                           radius: 20,
                         ),
-                        SizedBox(width: 8),
-                        Column(
+                        const SizedBox(width: 8),
+                        const Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
@@ -429,9 +424,9 @@ class ServicePageView extends GetView<ServicePageController> {
                             ),
                           ],
                         ),
-                        Spacer(),
+                        const Spacer(),
                         Row(
-                          children: [
+                          children: const [
                             Icon(Icons.star, color: Colors.amber, size: 20),
                             Text('4.9',
                                 style: TextStyle(fontWeight: FontWeight.bold)),
@@ -439,8 +434,8 @@ class ServicePageView extends GetView<ServicePageController> {
                         ),
                       ],
                     ),
-                    SizedBox(height: 8),
-                    Text(
+                    const SizedBox(height: 8),
+                    const Text(
                       'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
                       style: TextStyle(fontSize: 14),
                     ),
@@ -448,9 +443,6 @@ class ServicePageView extends GetView<ServicePageController> {
                 ),
               ),
             ),
-
-            SizedBox(height: 16),
-            // Add more reviews by copying the Card above...
           ],
         ),
       ),
