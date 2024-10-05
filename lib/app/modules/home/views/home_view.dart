@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:reparin_mobile/app/modules/navbar/views/navbar_view.dart';
 import '../controllers/home_controller.dart';
+import 'package:reparin_mobile/app/modules/navbar/views/navbar_view.dart'; // Assuming the custom navigation bar exists
 
 class HomeView extends GetView<HomeController> {
   const HomeView({super.key});
@@ -13,10 +13,10 @@ class HomeView extends GetView<HomeController> {
       appBar: AppBar(
         elevation: 0,
         backgroundColor: const Color(0xFF0093B7),
-        title: const Column(
+        title: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
+            const Text(
               'Location',
               style: TextStyle(
                 fontSize: 14,
@@ -25,7 +25,7 @@ class HomeView extends GetView<HomeController> {
               ),
             ),
             Row(
-              children: [
+              children: const [
                 Icon(Icons.location_on, size: 16, color: Colors.white),
                 SizedBox(width: 4),
                 Text(
@@ -43,13 +43,15 @@ class HomeView extends GetView<HomeController> {
         actions: [
           IconButton(
             icon: const Icon(Icons.notifications_outlined),
-            onPressed: () {},
+            onPressed: () {
+              Get.toNamed('/notification'); // Navigate to notification page
+            },
           ),
         ],
       ),
       body: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+          // Sticky "Find nearby services" section
           Container(
             padding: const EdgeInsets.only(
               left: 16,
@@ -83,90 +85,115 @@ class HomeView extends GetView<HomeController> {
             ),
           ),
           const SizedBox(height: 16),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                const Text(
-                  'Categories',
-                  style: TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-                TextButton(
-                  onPressed: () {
-                  Get.toNamed('category');
-                  },
-                  child: Text(
-                    'See All',
-                    style: TextStyle(
-                      color: Colors.grey[600],
-                      fontSize: 14,
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                _buildCategoryCard('Laptop', Icons.laptop_mac),
-                _buildCategoryCard('Handphone', Icons.phone_android),
-                _buildCategoryCard('Tablet', Icons.tablet_mac),
-              ],
-            ),
-          ),
-          const SizedBox(height: 24),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 16),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                const Text(
-                  'Popular Services',
-                  style: TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-                TextButton(
-                  onPressed: () {},
-                  child: Text(
-                    'See All',
-                    style: TextStyle(
-                      color: Colors.grey[600],
-                      fontSize: 14,
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ),
+
+          // Scrollable content from "Categories" to "Popular Services"
           Expanded(
-            child: Padding(
-              padding: const EdgeInsets.all(16),
-              child: GridView.count(
-                crossAxisCount: 2,
-                mainAxisSpacing: 16,
-                crossAxisSpacing: 16,
-                childAspectRatio: 1.1,
+            child: SingleChildScrollView(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  _buildServiceCard(5.0),
-                  _buildServiceCard(5.0),
-                  _buildServiceCard(4.9),
-                  _buildServiceCard(5.0),
+                  // Categories section
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 16),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        const Text(
+                          'Categories',
+                          style: TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        TextButton(
+                          onPressed: () {
+                            Get.toNamed(
+                                'category'); // Navigate to Category page
+                          },
+                          child: Text(
+                            'See All',
+                            style: TextStyle(
+                              color: Colors.grey[600],
+                              fontSize: 14,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 16),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        _buildCategoryCard('Laptop', Icons.laptop_mac),
+                        _buildCategoryCard('Handphone', Icons.phone_android),
+                        _buildCategoryCard('Tablet', Icons.tablet_mac),
+                      ],
+                    ),
+                  ),
+                  const SizedBox(height: 24),
+
+                  // Popular Services section
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 16),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        const Text(
+                          'Popular Services',
+                          style: TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        TextButton(
+                          onPressed: () {
+                            Get.toNamed(
+                                '/popular-service'); // Navigate to Popular Service page
+                          },
+                          child: Text(
+                            'See All',
+                            style: TextStyle(
+                              color: Colors.grey[600],
+                              fontSize: 14,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(16),
+                    child: Obx(() {
+                      return GridView.builder(
+                        physics:
+                            const NeverScrollableScrollPhysics(), // Prevent grid from scrolling independently
+                        shrinkWrap:
+                            true, // Shrink the grid to fit in the column
+                        gridDelegate:
+                            const SliverGridDelegateWithFixedCrossAxisCount(
+                          crossAxisCount: 2,
+                          mainAxisSpacing: 16,
+                          crossAxisSpacing: 16,
+                          childAspectRatio: 1.1,
+                        ),
+                        itemCount: controller.services.length,
+                        itemBuilder: (context, index) {
+                          var service = controller.services[index];
+                          return _buildServiceCard(service);
+                        },
+                      );
+                    }),
+                  ),
                 ],
               ),
             ),
           ),
         ],
       ),
-      bottomNavigationBar: const CustomBottomNavigationBar(), // Kept the original custom navigation bar
+      bottomNavigationBar:
+          const CustomBottomNavigationBar(), // Custom bottom navigation bar
     );
   }
 
@@ -198,43 +225,73 @@ class HomeView extends GetView<HomeController> {
     );
   }
 
-  Widget _buildServiceCard(double rating) {
+  Widget _buildPromoCard(String imagePath) {
     return Container(
+      width: 160,
+      height: 100,
       decoration: BoxDecoration(
-        color: const Color(0xFFE5F6FA),
         borderRadius: BorderRadius.circular(16),
       ),
-      padding: const EdgeInsets.all(12),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Row(
-                children: [
-                  const Icon(
-                    Icons.star,
-                    color: Colors.amber,
-                    size: 20,
-                  ),
-                  const SizedBox(width: 4),
-                  Text(
-                    rating.toString(),
-                    style: const TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 14,
-                    ),
-                  ),
-                ],
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(16),
+        child: Image.asset(
+          imagePath,
+          fit: BoxFit.contain,
+        ),
+      ),
+    );
+  }
+
+  Widget _buildServiceCard(Map<String, dynamic> service) {
+    return GestureDetector(
+      onTap: () {
+        Get.toNamed(
+            '/popular-service'); // Navigate to Popular Service page on image tap
+      },
+      child: Container(
+        decoration: BoxDecoration(
+          color: const Color(0xFFE5F6FA),
+          borderRadius: BorderRadius.circular(16),
+        ),
+        padding: const EdgeInsets.all(12),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Expanded(
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(16),
+                child: Image.asset(
+                  service['image'],
+                  width: double.infinity,
+                  fit: BoxFit.cover,
+                ),
               ),
-              const Icon(
-                Icons.bookmark_border,
-                color: Color(0xFF0093B7),
+            ),
+            const SizedBox(height: 8),
+            Text(
+              service['title'],
+              style: const TextStyle(
+                fontSize: 16,
+                fontWeight: FontWeight.bold,
               ),
-            ],
-          ),
-        ],
+            ),
+            const SizedBox(height: 4),
+            Text(
+              service['price'],
+              style: const TextStyle(
+                fontSize: 14,
+                color: Colors.green,
+              ),
+            ),
+            Text(
+              service['provider'],
+              style: const TextStyle(
+                fontSize: 12,
+                color: Colors.grey,
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

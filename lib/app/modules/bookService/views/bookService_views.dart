@@ -17,7 +17,7 @@ class BookServiceView extends GetView<BookServiceController> {
             icon: const Icon(Icons.arrow_circle_left_outlined,
                 color: Colors.black, size: 24.0),
             onPressed: () {
-              print('IconButton pressed ...');
+              Get.back();
             },
           ),
           title: const Text(
@@ -182,7 +182,7 @@ class BookServiceView extends GetView<BookServiceController> {
         padding: const EdgeInsets.fromLTRB(32.0, 16.0, 32.0, 18.0),
         child: ElevatedButton(
           onPressed: () {
-            controller.onContinuePressed();
+            Get.toNamed('/confirm_address');
           },
           style: ElevatedButton.styleFrom(
             backgroundColor: const Color(0xFF0083B3),

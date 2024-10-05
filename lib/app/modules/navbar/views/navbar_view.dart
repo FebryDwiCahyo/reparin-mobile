@@ -12,14 +12,14 @@ class CustomBottomNavigationBar extends StatelessWidget {
     return Obx(() => BottomNavigationBar(
           items: const <BottomNavigationBarItem>[
             BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
-            BottomNavigationBarItem(icon: Icon(Icons.location_on), label: 'Location'),
+            BottomNavigationBarItem(icon: Icon(Icons.location_on), label: 'Explore'),
             BottomNavigationBarItem(icon: Icon(Icons.bookmark), label: 'Bookmark'),
-            BottomNavigationBarItem(icon: Icon(Icons.chat), label: 'Chat'),
+            BottomNavigationBarItem(icon: Icon(Icons.chat), label: 'Message'),
             BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Profile'),
           ],
           currentIndex: controller.selectedIndex.value, // Observe the selected index
-          selectedItemColor: Colors.teal,
-          unselectedItemColor: Colors.grey,
+          selectedItemColor: Color(0xFF0093B7),
+          unselectedItemColor: Colors.black,
           onTap: (index) => controller.onItemTapped(index), // Handle tap
         ));
   }

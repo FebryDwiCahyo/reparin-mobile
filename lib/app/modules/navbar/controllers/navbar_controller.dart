@@ -8,11 +8,11 @@ class NavbarController extends GetxController {
 
   // List of available routes based on the index
   final List<String> routes = [
-    Routes.HOME,     // 0
-    Routes.LOCATION, // 1
-    Routes.BOOKMARK, // 2
-    Routes.CHAT,     // 3
-    Routes.PROFILE,  // 4
+    Routes.HOME,        // 0
+    Routes.EXPLORE,     // 1
+    Routes.BOOKMARK,    // 2
+    Routes.MESSAGE,     // 3
+    Routes.PROFILE,     // 4
   ];
 
   // Function to handle navigation based on index

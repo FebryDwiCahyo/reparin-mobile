@@ -496,7 +496,9 @@ class ServicePageView extends GetView<ServicePageController> {
                   ],
                 ),
                 ElevatedButton(
-                  onPressed: controller.onBookNowPressed,
+                  onPressed: () {
+                    Get.toNamed('/service/page/confirmation');
+                  },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: const Color(0xFF0083B3),
                     shape: RoundedRectangleBorder(

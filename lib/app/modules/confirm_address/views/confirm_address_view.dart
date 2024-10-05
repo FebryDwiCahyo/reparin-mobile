@@ -138,7 +138,9 @@ class ConfirmAddressView extends GetView<ConfirmAddressController> {
                   child: SizedBox(
                     width: double.infinity,
                     child: ElevatedButton(
-                      onPressed: () => controller.continuePressed(),
+                      onPressed: () {
+                        Get.toNamed('/reviewsummary');
+                      },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: const Color(0xFF0083B3),
                         foregroundColor: Colors.white,

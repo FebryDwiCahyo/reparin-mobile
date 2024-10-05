@@ -120,7 +120,9 @@ class ServicePageConfirmationView extends GetView<ServicePageConfirmationControl
             child: SizedBox(
               width: double.infinity,
               child: ElevatedButton(
-                onPressed: controller.onContinuePressed,
+                onPressed:  () {
+                    Get.toNamed('/book/service');
+                  },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: const Color(0xFF0083B3),
                   foregroundColor: Colors.white,

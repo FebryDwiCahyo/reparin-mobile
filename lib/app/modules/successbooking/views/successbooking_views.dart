@@ -49,9 +49,12 @@ class SuccessbookingView extends GetView<SuccessbookingController> {
             ),
             const SizedBox(height: 40),
             ElevatedButton(
-              onPressed: () => controller.viewEReceipt(),
+              onPressed: () {
+                Get.toNamed('/ereceipt');
+              },
               style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.blue,
+                foregroundColor: Colors.white, // Set text color to white
                 minimumSize: const Size(200, 50),
               ),
               child: const Text('View E-Receipt'),

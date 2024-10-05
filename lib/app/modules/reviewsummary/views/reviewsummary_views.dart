@@ -1,3 +1,5 @@
+import 'dart:ui'; // Import for ImageFilter
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../controllers/reviewsummary_controller.dart';
@@ -36,6 +38,62 @@ class ReviewsummaryView extends GetView<ReviewsummaryController> {
           ),
         ],
       ),
+      bottomNavigationBar: ClipRRect(
+        borderRadius: const BorderRadius.only(
+          topLeft: Radius.circular(30),
+          topRight: Radius.circular(30),
+        ),
+        child: BackdropFilter(
+          filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
+          child: Container(
+            padding: const EdgeInsets.all(16),
+            decoration: BoxDecoration(
+              color: Colors.white.withOpacity(0.8),
+              border: Border(
+                top: BorderSide(
+                  color: Colors.grey.withOpacity(0.2),
+                  width: 1,
+                ),
+                left: BorderSide(
+                  color: Colors.grey.withOpacity(0.2),
+                  width: 1,
+                ),
+                right: BorderSide(
+                  color: Colors.grey.withOpacity(0.2),
+                  width: 1,
+                ),
+              ),
+              borderRadius: const BorderRadius.only(
+                topLeft: Radius.circular(30),
+                topRight: Radius.circular(30),
+              ),
+            ),
+            child: SizedBox(
+              width: double.infinity,
+              child: ElevatedButton(
+                onPressed: () {
+                  Get.toNamed('/successbooking');
+                },
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: const Color(0xFF0083B3),
+                  foregroundColor: Colors.white,
+                  padding: const EdgeInsets.symmetric(vertical: 16),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(30),
+                  ),
+                ),
+                child: const Text(
+                  'Continue',
+                  style: TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+            ),
+          ),
+        ),
+      ),
     );
   }
 
@@ -72,7 +130,7 @@ class ReviewsummaryView extends GetView<ReviewsummaryController> {
           ClipRRect(
             borderRadius: BorderRadius.circular(8),
             child: Image.asset(
-              'assets/repair1.jpg', // Pastikan path disesuaikan dengan file gambar
+              'assets/repair1.jpg', // Adjust path to match your image file
               width: 60,
               height: 60,
               fit: BoxFit.cover,

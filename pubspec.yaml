@@ -72,6 +72,18 @@ flutter:
     - assets/card.png
     - assets/wallet.png
     - assets/chip.png
+    - assets/onboarding.png
+    - assets/start_image.png
+    - assets/device_repair.png
+    - assets/laptop_repair.png
+    - assets/smartphone_repair.png
+    - assets/camera_repair.png
+    - assets/device_repair1.png
+    - assets/laptop_repair1.png
+    - assets/smartphone_repair1.png
+    - assets/camera_repair1.png
+    - assets/promo_kemerdekaan_17k.png
+    - assets/promo_merdeka_17_percent.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images

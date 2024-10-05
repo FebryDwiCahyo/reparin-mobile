@@ -44,31 +44,52 @@ class ProfileViewView extends GetView<ProfileViewController> {
                       Center(
                         child: Stack(
                           children: [
-                            Obx(() => CircleAvatar(
-                                  radius: 50,
-                                  backgroundImage: controller.profile.value
-                                          .imagePath.value.isNotEmpty
-                                      ? FileImage(File(controller
-                                          .profile.value.imagePath.value))
-                                      : const AssetImage(
-                                              'assets/default_avatar.png')
-                                          as ImageProvider,
+                            Obx(() => Container(
+                                  width: 100,
+                                  height: 100,
+                                  decoration: BoxDecoration(
+                                    shape: BoxShape.circle,
+                                    image: controller.profile.value.imagePath
+                                            .value.isNotEmpty
+                                        ? DecorationImage(
+                                            image: FileImage(File(controller
+                                                .profile
+                                                .value
+                                                .imagePath
+                                                .value)),
+                                            fit: BoxFit.cover,
+                                          )
+                                        : const DecorationImage(
+                                            image: AssetImage(
+                                                'assets/default_avatar.png'),
+                                            fit: BoxFit.cover,
+                                          ),
+                                  ),
                                 )),
                             Positioned(
                               bottom: 0,
                               right: 0,
-                              child: CircleAvatar(
-                                radius: 18,
-                                backgroundColor: Colors.grey[200],
-                                child: IconButton(
-                                  icon: const Icon(
-                                    Icons.edit,
-                                    size: 18,
-                                    color: Colors.black,
-                                  ),
-                                  onPressed: () => controller.pickImage(),
-                                ),
-                              ),
+                              child: Obx(() => CircleAvatar(
+                                    radius: 18,
+                                    backgroundColor: Colors.grey[200],
+                                    child: controller.isImageLoading.value
+                                        ? const SizedBox(
+                                            width: 18,
+                                            height: 18,
+                                            child: CircularProgressIndicator(
+                                              strokeWidth: 2,
+                                            ),
+                                          )
+                                        : IconButton(
+                                            icon: const Icon(
+                                              Icons.edit,
+                                              size: 18,
+                                              color: Colors.black,
+                                            ),
+                                            onPressed: () =>
+                                                controller.pickImage(),
+                                          ),
+                                  )),
                             ),
                           ],
                         ),

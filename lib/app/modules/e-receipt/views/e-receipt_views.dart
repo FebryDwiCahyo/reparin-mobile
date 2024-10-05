@@ -51,6 +51,7 @@ class EreceiptView extends GetView<EreceiptController> {
                 onPressed: controller.downloadReceipt,
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.blue,
+                  foregroundColor: Colors.white,
                   padding: const EdgeInsets.symmetric(vertical: 16),
                 ),
                 child: const Text('Download E-Receipt'),

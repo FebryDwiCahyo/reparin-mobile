@@ -3,6 +3,10 @@ import '../modules/category/bindings/category_binding.dart';
 import '../modules/category/views/category_view.dart';
 import '../modules/home/bindings/home_binding.dart';
 import '../modules/home/views/home_view.dart';
+import '../modules/homeMerdeka/bindings/home_binding.dart';
+import '../modules/homeMerdeka/views/home_view.dart';
+import '../modules/promo/bindings/promo_binding.dart';
+import '../modules/promo/views/promo_view.dart';
 import '../modules/login/bindings/login_binding.dart';
 import '../modules/login/views/login_view.dart';
 import '../modules/profile/bindings/profile_binding.dart';
@@ -35,18 +39,55 @@ import '../modules/servicePage/bindings/servicePage_binding.dart';
 import '../modules/servicePage/views/servicePage_view.dart';
 import '../modules/servicePageConfirmation/bindings/servicePageConfirmation_binding.dart';
 import '../modules/servicePageConfirmation/views/servicePageConfirmation_view.dart';
+import '../modules/bookmark/bindings/bookmark_binding.dart';
+import '../modules/bookmark/views/bookmark_view.dart';
+import '../modules/message/bindings/message_binding.dart';
+import '../modules/message/views/message_view.dart';
+import '../modules/notification/bindings/notification_binding.dart';
+import '../modules/notification/views/notification_view.dart';
+import '../modules/onboarding/bindings/onboarding_binding.dart';
+import '../modules/onboarding/views/onboarding_view.dart';
+import '../modules/popular_service/bindings/popular_service_binding.dart';
+import '../modules/popular_service/views/popular_service_view.dart';
+import '../modules/started/bindings/started_binding.dart';
+import '../modules/started/views/started_view.dart';
+import '../modules/explore/bindings/explore_binding.dart';
+import '../modules/explore/views/explore_view.dart';
+import '../modules/location_input/bindings/location_input_bindings.dart';
+import '../modules/location_input/views/location_input_view.dart';
+import '../modules/Service/bindings/service_provider_binding.dart';
+import '../modules/Service/Views/service_provider_view.dart';
+import '../modules/review/bindings/review_binding.dart';
+import '../modules/review/view/review_view.dart';
+import '../modules/gallary/bindings/gallery_binding.dart';
+import '../modules/gallary/views/gallery_view.dart';
+import '../modules/about/bindings/about_binding.dart';
+import '../modules/about/views/about_views.dart';
+import '../modules/help_center_faq/bindings/faqbindings.dart';
+import '../modules/help_center_faq/views/faqviews.dart';
+import '../modules/contact_us/bindings/contact_us_bindings.dart';
+import '../modules/contact_us/views/contact_us_views.dart';
 import '../modules/navbar/bindings/navbar_binding.dart';
+import '../modules/navbarMerdeka/bindings/navbar_binding.dart';
 
 part 'app_routes.dart';
 
 class AppPages {
   AppPages._();
 
-  static const INITIAL = Routes.servicePageConfirmation;
+  static const INITIAL = Routes.ONBOARDING;
   static const LOGIN = Routes.LOGIN;
+  static const PROMO = Routes.PROMO;
   static const PROFILE = Routes.PROFILE;
   static const ProfileView = Routes.profileView;
   static const CATEGORY = Routes.CATEGORY;
+  static const HOME = Routes.HOME;
+  static const STARTED = Routes.STARTED;
+  static const BOOKMARK = Routes.BOOKMARK;
+  static const POPULAR = Routes.POPULAR;
+  static const EXPLORE = Routes.EXPLORE;
+  static const MESSAGE = Routes.MESSAGE;
+  static const NOTIFICATION = Routes.NOTIFICATION;
   static const BookService = Routes.bookService;
   static const BOOKUPCOMING = Routes.BOOKUPCOMING;
   static const BOOKCOMPLETED = Routes.BOOKCOMPLETED;
@@ -60,6 +101,13 @@ class AppPages {
   static const CONFIRM_ADDRESS = Routes.CONFIRM_ADDRESS;
   static const servicePage = Routes.servicePage;
   static const ServicePageConfirmation = Routes.servicePageConfirmation;
+  static const LOCATIONINPUT = Routes.LOCATIONINPUT;
+  static const REVIEW = Routes.REVIEW;
+  static const SERVICE = Routes.SERVICE;
+  static const GALLARY = Routes.GALLARY;
+  static const ABOUT = Routes.ABOUT;
+  static const HELP_CENTER_FAQ = Routes.HELP_CENTER_FAQ;
+  static const CONTACT_US = Routes.CONTACT_US;
 
   static final routes = [
     GetPage(
@@ -72,6 +120,19 @@ class AppPages {
       NavbarBinding(),
       CategoryBinding(),
     ]),
+    GetPage(
+        name: _Paths.HOMEMERDEKA,
+        page: () => const HomeMerdekaView(),
+        bindings: [
+          HomeMerdekaBinding(),
+          NavbarMerdekaBinding(),
+          CategoryBinding(),
+        ]),
+    GetPage(
+      name: _Paths.PROMO,
+      page: () => const PromoView(), // Ensure this points to CategoryView
+      binding: PromoBinding(),
+    ),
     GetPage(name: _Paths.PROFILE, page: () => const ProfileViews(), bindings: [
       ProfileBinding(),
       NavbarBinding(),
@@ -86,6 +147,43 @@ class AppPages {
       name: _Paths.CATEGORY,
       page: () => const CategoryView(), // Ensure this points to CategoryView
       binding: CategoryBinding(),
+    ),
+    GetPage(
+      name: _Paths.ONBOARDING,
+      page: () => const OnboardingView(), // Ensure this points to CategoryView
+      binding: OnboardingBinding(),
+    ),
+    GetPage(
+      name: _Paths.STARTED,
+      page: () => StartedView(), // Ensure this points to CategoryView
+      binding: StartedBinding(),
+    ),
+    GetPage(
+      name: _Paths.EXPLORE,
+      page: () => const ExploreView(), // Ensure this points to CategoryView
+      binding: ExploreBinding(),
+    ),
+    GetPage(
+      name: _Paths.BOOKMARK,
+      page: () => const BookmarkView(), // Ensure this points to CategoryView
+      binding: BookmarkBinding(),
+    ),
+    GetPage(
+      name: _Paths.POPULAR,
+      page: () =>
+          const PopularServiceView(), // Ensure this points to CategoryView
+      binding: PopularServiceBinding(),
+    ),
+    GetPage(
+      name: _Paths.MESSAGE,
+      page: () => const MessageView(), // Ensure this points to CategoryView
+      binding: MessageBinding(),
+    ),
+    GetPage(
+      name: _Paths.NOTIFICATION,
+      page: () =>
+          const NotificationView(), // Ensure this points to CategoryView
+      binding: NotificationBinding(),
     ),
     GetPage(
       name: _Paths.BookService,
@@ -156,8 +254,46 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.servicePageConfirmation,
-      page: () => const ServicePageConfirmationView(), // Ensure this points to CategoryView
+      page: () =>
+          const ServicePageConfirmationView(), // Ensure this points to CategoryView
       binding: ServicePageConfirmationBinding(),
+    ),
+    GetPage(
+      name: _Paths.LOCATIONINPUT,
+      page: () =>
+          const LocationInputView(), // Ensure this points to CategoryView
+      binding: LocationInputBinding(),
+    ),
+    GetPage(
+      name: _Paths.SERVICE,
+      page: () =>
+          const ServiceProviderView(), // Ensure this points to CategoryView
+      binding: ServiceProviderBinding(),
+    ),
+    GetPage(
+      name: _Paths.REVIEW,
+      page: () => const reviewView(), // Ensure this points to CategoryView
+      binding: reviewBinding(),
+    ),
+    GetPage(
+      name: _Paths.GALLARY,
+      page: () => const GalleryView(), // Ensure this points to CategoryView
+      binding: GalleryBinding(),
+    ),
+    GetPage(
+      name: _Paths.ABOUT,
+      page: () => const AboutView(), // Ensure this points to CategoryView
+      binding: AboutBinding(),
+    ),
+    GetPage(
+      name: _Paths.HELP_CENTER_FAQ,
+      page: () => const FaqView(), // Ensure this points to CategoryView
+      binding: FaqBinding(),
+    ),
+    GetPage(
+      name: _Paths.CONTACT_US,
+      page: () => const ContactUsView(), // Ensure this points to CategoryView
+      binding: ContactUsBinding(),
     ),
   ];
 }
