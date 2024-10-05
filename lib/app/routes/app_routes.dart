@@ -21,6 +21,7 @@ abstract class Routes {
   static const SUCCESSBOOKING = _Paths.SUCCESSBOOKING;
   static const ERECEIPT = _Paths.ERECEIPT;
   static const PRIVACYPOLICY = _Paths.PRIVACYPOLICY;
+  static const CONFIRM_ADDRESS = _Paths.CONFIRM_ADDRESS;
 }
 
 abstract class _Paths {
@@ -43,4 +44,5 @@ abstract class _Paths {
   static const SUCCESSBOOKING = '/successbooking';
   static const ERECEIPT = '/ereceipt';
   static const PRIVACYPOLICY = '/privacypolicy';
+  static const CONFIRM_ADDRESS = '/confirm_address';
 }

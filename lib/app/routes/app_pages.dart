@@ -29,6 +29,8 @@ import '../modules/e-receipt/bindings/e-receipt_binding.dart';
 import '../modules/e-receipt/views/e-receipt_views.dart';
 import '../modules/privacypolicy/bindings/privacypolicy_binding.dart';
 import '../modules/privacypolicy/views/privacypolicy_views.dart';
+import '../modules/confirm_address/bindings/confirm_address_binding.dart';
+import '../modules/confirm_address/views/confirm_address_view.dart';
 import '../modules/navbar/bindings/navbar_binding.dart';
 
 part 'app_routes.dart';
@@ -36,7 +38,7 @@ part 'app_routes.dart';
 class AppPages {
   AppPages._();
 
-  static const INITIAL = Routes.addCard;
+  static const INITIAL = Routes.CONFIRM_ADDRESS;
   static const LOGIN = Routes.LOGIN;
   static const PROFILE = Routes.PROFILE;
   static const ProfileView = Routes.profileView;
@@ -51,6 +53,7 @@ class AppPages {
   static const SUCCESSBOOKING = Routes.SUCCESSBOOKING;
   static const ERECEIPT = Routes.ERECEIPT;
   static const PRIVACYPOLICY = Routes.PRIVACYPOLICY;
+  static const CONFIRM_ADDRESS = Routes.CONFIRM_ADDRESS;
 
   static final routes = [
     GetPage(
@@ -108,8 +111,7 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.addCard,
-      page: () =>
-          const AddCardView(), // Ensure this points to CategoryView
+      page: () => const AddCardView(), // Ensure this points to CategoryView
       binding: AddCardBinding(),
     ),
     GetPage(
@@ -134,6 +136,12 @@ class AppPages {
       page: () =>
           const PrivacypolicyView(), // Ensure this points to CategoryView
       binding: PrivacypolicyBinding(),
+    ),
+    GetPage(
+      name: _Paths.CONFIRM_ADDRESS,
+      page: () =>
+          const ConfirmAddressView(), // Ensure this points to CategoryView
+      binding: ConfirmAddressBinding(),
     ),
   ];
 }
