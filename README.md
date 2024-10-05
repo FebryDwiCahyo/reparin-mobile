@@ -1,6 +1,6 @@
-# tugas_1
+# Reparin
 
-A new Flutter project.
+Tugas Kelompok Membuat Aplikasi Mobile Menggunakan Flutter
 
 ## Getting Started
 
