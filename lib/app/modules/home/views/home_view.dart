@@ -2,6 +2,8 @@
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import '../../webview/controllers/webview_controller.dart';
+import '../../webview/views/webview_reparin.dart';
 import '../controllers/home_controller.dart';
 import 'package:reparin_mobile/app/modules/navbar/views/navbar_view.dart'; // Assuming the custom navigation bar exists
 
@@ -15,10 +17,10 @@ class HomeView extends GetView<HomeController> {
       appBar: AppBar(
         elevation: 0,
         backgroundColor: const Color(0xFF0093B7),
-        title: const Column(
+        title: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
+            const Text(
               'Location',
               style: TextStyle(
                 fontSize: 14,
@@ -27,7 +29,7 @@ class HomeView extends GetView<HomeController> {
               ),
             ),
             Row(
-              children: [
+              children: const [
                 Icon(Icons.location_on, size: 16, color: Colors.white),
                 SizedBox(width: 4),
                 Text(
@@ -43,6 +45,17 @@ class HomeView extends GetView<HomeController> {
           ],
         ),
         actions: [
+          IconButton(
+            icon: const Icon(Icons.newspaper_outlined),
+            onPressed: () {
+              Get.to(
+                () => const HelpWebViewReparin(),
+                binding: BindingsBuilder(() {
+                  Get.put(ArticleDetailController()); // Bind the controller here
+                }),
+              );
+            },
+          ),
           IconButton(
             icon: const Icon(Icons.notifications_outlined),
             onPressed: () {

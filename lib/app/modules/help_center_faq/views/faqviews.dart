@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../../webview/controllers/webview_controller.dart';
-import '../../webview/views/webview.dart';
+import '../../webview/views/webview_ifixit.dart';
 import '../controllers/faqcontrolers.dart';
 
 class FaqView extends GetView<FaqController> {
@@ -102,7 +102,7 @@ Widget _buildHelpTile() {
         child: ElevatedButton(
           onPressed: () {
             Get.to(
-              () => const HelpWebView(),
+              () => const HelpWebViewIfixit(),
               binding: BindingsBuilder(() {
                 Get.put(ArticleDetailController()); // Bind the controller here
               }),
