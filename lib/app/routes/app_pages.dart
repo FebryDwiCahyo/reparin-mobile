@@ -155,7 +155,7 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.STARTED,
-      page: () => StartedView(), // Ensure this points to CategoryView
+      page: () => const StartedView(), // Ensure this points to CategoryView
       binding: StartedBinding(),
     ),
     GetPage(

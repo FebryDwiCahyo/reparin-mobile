@@ -112,6 +112,7 @@ class ProfileViews extends GetView<ProfileController> {
                   title: 'Help Center',
                   icon: Icons.help_outline,
                   onTap: () {
+                    Get.toNamed('/help_center_faq');
                     // Navigate to help center
                   },
                 ),

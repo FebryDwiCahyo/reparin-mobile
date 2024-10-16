@@ -39,6 +39,11 @@ class FaqController extends GetxController {
         answer: 'To activate booking details, go to your profile and select "My Bookings". Then choose the booking you want to activate.',
         category: 'Account',
       ),
+      FaqItem(
+        question: 'Need more help?',
+        answer: '', // The button will appear instead of the answer
+        category: 'General',
+      ),
       // Add more FAQ items here
     ];
   }

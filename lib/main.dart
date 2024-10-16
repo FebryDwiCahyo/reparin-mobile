@@ -10,7 +10,7 @@ void main() {
       initialRoute: AppPages.INITIAL,
       getPages: AppPages.routes,
       theme: ThemeData(
-        primaryColor: Color(0xFF0083B3),
+        primaryColor: const Color(0xFF0083B3),
         scaffoldBackgroundColor: Colors.white,
       ),
     ),

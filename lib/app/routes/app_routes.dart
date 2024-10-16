@@ -36,6 +36,7 @@ abstract class Routes {
   static const ABOUT = _Paths.ABOUT;
   static const HELP_CENTER_FAQ = _Paths.HELP_CENTER_FAQ;
   static const CONTACT_US = _Paths.CONTACT_US;
+  static const HELPWEBVIEW = _Paths.HELPWEBVIEW;
 }
 
 abstract class _Paths {
@@ -74,4 +75,5 @@ abstract class _Paths {
   static const ABOUT = '/about';
   static const HELP_CENTER_FAQ = '/help_center_faq';
   static const CONTACT_US = '/contact_us';
+  static const HELPWEBVIEW = '/helpwebview';
 }
