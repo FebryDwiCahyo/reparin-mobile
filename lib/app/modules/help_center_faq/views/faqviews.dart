@@ -116,9 +116,9 @@ Widget _buildHelpTile() {
             ),
             elevation: 5, // Add some shadow to make the button stand out
           ),
-          child: Row(
+          child: const Row(
             mainAxisSize: MainAxisSize.min, // Make the button adjust to its content size
-            children: const [
+            children: [
               Icon(Icons.help_outline, color: Colors.white), // Add an icon to make it more engaging
               SizedBox(width: 8), // Add space between the icon and the text
               Text(
