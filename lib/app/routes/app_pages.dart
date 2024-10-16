@@ -69,6 +69,8 @@ import '../modules/contact_us/bindings/contact_us_bindings.dart';
 import '../modules/contact_us/views/contact_us_views.dart';
 import '../modules/navbar/bindings/navbar_binding.dart';
 import '../modules/navbarMerdeka/bindings/navbar_binding.dart';
+import '../modules/getconnect/bindings/getconnect_binding.dart';
+import '../modules/getconnect/views/getconnect_view.dart';
 
 part 'app_routes.dart';
 
@@ -261,8 +263,8 @@ class AppPages {
     GetPage(
       name: _Paths.LOCATIONINPUT,
       page: () =>
-          const LocationInputView(), // Ensure this points to CategoryView
-      binding: LocationInputBinding(),
+          const GetConnectView(), // Ensure this points to CategoryView
+      binding: GetConnectBinding(),
     ),
     GetPage(
       name: _Paths.SERVICE,
