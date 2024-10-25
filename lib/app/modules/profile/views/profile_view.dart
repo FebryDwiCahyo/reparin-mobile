@@ -1,16 +1,17 @@
 // File 2: /lib/app/modules/profile/views/profile_view.dart
 
-import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:reparin_mobile/app/modules/navbar/views/navbar_view.dart';
 import '../controllers/profile_controller.dart';
+import '../../../data/services/authentication/controllers/authentication_controller.dart';
 
 class ProfileViews extends GetView<ProfileController> {
   const ProfileViews({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final AuthenticationController authController = Get.find<AuthenticationController>();
     return Scaffold(
       appBar: AppBar(
         title: const Text('Profile'),
@@ -28,14 +29,13 @@ class ProfileViews extends GetView<ProfileController> {
 
           // Profile Picture with Image Picker functionality
           GestureDetector(
-            onTap: () {
-              controller.pickImage(); // Panggil method untuk memilih gambar
-            },
+            onTap: () => controller.updateProfileImage(),
             child: Obx(() {
+              final imagePath = controller.profile.value.imagePath.value;
               return CircleAvatar(
                 radius: 50,
-                backgroundImage: controller.imagePath.value.isNotEmpty
-                    ? FileImage(File(controller.imagePath.value))
+                backgroundImage: imagePath.isNotEmpty
+                    ? NetworkImage(imagePath)
                     : const AssetImage('assets/default_avatar.png')
                         as ImageProvider,
               );
@@ -45,7 +45,7 @@ class ProfileViews extends GetView<ProfileController> {
 
           // User Name
           Obx(() => Text(
-                controller.name.value, // Ambil data 'name'
+              controller.profile.value.name.value,
                 style: const TextStyle(
                   fontSize: 20,
                   fontWeight: FontWeight.bold,
@@ -129,7 +129,7 @@ class ProfileViews extends GetView<ProfileController> {
                   title: 'Sign Out',
                   icon: Icons.logout,
                   onTap: () {
-                    controller.signOut(); // Panggil metode sign out
+                    authController.logout(); // Panggil metode sign out
                   },
                 ),
               ],

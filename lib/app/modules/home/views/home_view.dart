@@ -17,10 +17,10 @@ class HomeView extends GetView<HomeController> {
       appBar: AppBar(
         elevation: 0,
         backgroundColor: const Color(0xFF0093B7),
-        title: Column(
+        title: const Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Text(
+            Text(
               'Location',
               style: TextStyle(
                 fontSize: 14,
@@ -29,7 +29,7 @@ class HomeView extends GetView<HomeController> {
               ),
             ),
             Row(
-              children: const [
+              children: [
                 Icon(Icons.location_on, size: 16, color: Colors.white),
                 SizedBox(width: 4),
                 Text(

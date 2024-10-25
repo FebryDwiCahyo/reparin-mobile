@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import '../data/services/authentication/bindings/authentication_binding.dart';
 import '../modules/category/bindings/category_binding.dart';
 import '../modules/category/views/category_view.dart';
 import '../modules/home/bindings/home_binding.dart';
@@ -25,6 +26,8 @@ import '../modules/add_card/bindings/add_card_binding.dart';
 import '../modules/add_card/views/add_card_view.dart';
 import '../modules/paymentsmethod/bindings/paymentmethod_bindings.dart';
 import '../modules/paymentsmethod/views/paymentmethod_views.dart';
+import '../modules/register/bindings/register_binding.dart';
+import '../modules/register/views/register_view.dart';
 import '../modules/reviewsummary/bindings/reviewsummary_binding.dart';
 import '../modules/reviewsummary/views/reviewsummary_views.dart';
 import '../modules/successbooking/bindings/successbooking_binding.dart';
@@ -53,8 +56,8 @@ import '../modules/started/bindings/started_binding.dart';
 import '../modules/started/views/started_view.dart';
 import '../modules/explore/bindings/explore_binding.dart';
 import '../modules/explore/views/explore_view.dart';
-import '../modules/location_input/bindings/location_input_bindings.dart';
-import '../modules/location_input/views/location_input_view.dart';
+// import '../modules/location_input/bindings/location_input_bindings.dart';
+// import '../modules/location_input/views/location_input_view.dart';
 import '../modules/Service/bindings/service_provider_binding.dart';
 import '../modules/Service/Views/service_provider_view.dart';
 import '../modules/review/bindings/review_binding.dart';
@@ -79,6 +82,7 @@ class AppPages {
 
   static const INITIAL = Routes.ONBOARDING;
   static const LOGIN = Routes.LOGIN;
+  static const REGISTER = Routes.REGISTER;
   static const PROMO = Routes.PROMO;
   static const PROFILE = Routes.PROFILE;
   static const ProfileView = Routes.profileView;
@@ -115,8 +119,21 @@ class AppPages {
     GetPage(
       name: _Paths.LOGIN,
       page: () => const LoginView(),
-      binding: LoginBinding(),
-    ),
+      bindings: [
+        RegisterBinding(),
+        LoginBinding(),
+        NavbarBinding(),
+        ProfileBinding()
+        ]),
+    GetPage(
+      name: _Paths.REGISTER,
+      page: () => const RegisterView(),
+      bindings: [
+        RegisterBinding(),
+        LoginBinding(),
+        NavbarBinding(),
+        ProfileBinding()
+        ]),
     GetPage(name: _Paths.HOME, page: () => const HomeView(), bindings: [
       HomeBinding(),
       NavbarBinding(),
@@ -138,12 +155,14 @@ class AppPages {
     GetPage(name: _Paths.PROFILE, page: () => const ProfileViews(), bindings: [
       ProfileBinding(),
       NavbarBinding(),
+      AuthenticationBinding(),
     ]),
     GetPage(
         name: _Paths.ProfileView,
         page: () => const ProfileViewView(),
         bindings: [
           ProfileViewBinding(),
+          NavbarBinding(),
         ]),
     GetPage(
       name: _Paths.CATEGORY,
@@ -163,13 +182,17 @@ class AppPages {
     GetPage(
       name: _Paths.EXPLORE,
       page: () => const ExploreView(), // Ensure this points to CategoryView
-      binding: ExploreBinding(),
-    ),
+      bindings: [
+        ExploreBinding(),
+        NavbarBinding(),
+      ]),
     GetPage(
       name: _Paths.BOOKMARK,
       page: () => const BookmarkView(), // Ensure this points to CategoryView
-      binding: BookmarkBinding(),
-    ),
+      bindings: [
+        BookmarkBinding(),
+        NavbarBinding(),
+      ]),
     GetPage(
       name: _Paths.POPULAR,
       page: () =>
@@ -179,8 +202,10 @@ class AppPages {
     GetPage(
       name: _Paths.MESSAGE,
       page: () => const MessageView(), // Ensure this points to CategoryView
-      binding: MessageBinding(),
-    ),
+      bindings: [
+        MessageBinding(),
+        NavbarBinding(),
+      ]),
     GetPage(
       name: _Paths.NOTIFICATION,
       page: () =>
@@ -262,8 +287,7 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.LOCATIONINPUT,
-      page: () =>
-          const GetConnectView(), // Ensure this points to CategoryView
+      page: () => const GetConnectView(), // Ensure this points to CategoryView
       binding: GetConnectBinding(),
     ),
     GetPage(

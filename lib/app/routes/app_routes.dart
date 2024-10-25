@@ -6,6 +6,7 @@ abstract class Routes {
   static const HOME = _Paths.HOME;
   static const PROMO = _Paths.PROMO;
   static const LOGIN = _Paths.LOGIN;
+  static const REGISTER = _Paths.REGISTER;
   static const PROFILE = _Paths.PROFILE;
   static const profileView = _Paths.ProfileView;
   static const EXPLORE = _Paths.EXPLORE;
@@ -21,7 +22,8 @@ abstract class Routes {
   static const BOOKCOMPLETED = _Paths.BOOKCOMPLETED;
   static const BOOKCANCELLED = _Paths.BOOKCANCELLED;
   static const PAYMENTMETHOD = _Paths.PAYMENTMETHOD;
-  static const addCard = _Paths.addCard;  // Additional path for adding a payment card.  // Additional path for adding a payment card.  // Additional path for adding a payment card.  // Additional path for adding a payment card.  // Additional path for adding a payment card.  // Additional path for adding a payment card.  // Additional path for adding a payment card.  // Additional path for adding a payment card.  // Additional path for adding a payment card
+  static const addCard = _Paths
+      .addCard; // Additional path for adding a payment card.  // Additional path for adding a payment card.  // Additional path for adding a payment card.  // Additional path for adding a payment card.  // Additional path for adding a payment card.  // Additional path for adding a payment card.  // Additional path for adding a payment card.  // Additional path for adding a payment card.  // Additional path for adding a payment card
   static const REVIEWSUMMARY = _Paths.REVIEWSUMMARY;
   static const SUCCESSBOOKING = _Paths.SUCCESSBOOKING;
   static const ERECEIPT = _Paths.ERECEIPT;
@@ -45,6 +47,7 @@ abstract class _Paths {
   static const HOMEMERDEKA = '/homeMerdeka';
   static const PROMO = '/promo';
   static const LOGIN = '/login';
+  static const REGISTER = '/register';
   static const PROFILE = '/profile';
   static const ProfileView = '/profile/edit';
   static const EXPLORE = '/explore';
