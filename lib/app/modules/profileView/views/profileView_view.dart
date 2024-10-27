@@ -12,10 +12,17 @@ class ProfileViewView extends GetView<ProfileViewController> {
     return Scaffold(
       body: SafeArea(
         child: Obx(() {
+          // Pastikan data profil sudah termuat sebelum menampilkan konten
+          if (controller.profile.value.name.value.isEmpty) {
+            return const Center(child: CircularProgressIndicator());
+          }
+
           // Initialize text controllers with current values
           controller.nameController.text = controller.profile.value.name.value;
-          controller.phoneController.text = controller.profile.value.phone.value;
-          controller.emailController.text = controller.profile.value.email.value;
+          controller.phoneController.text =
+              controller.profile.value.phone.value;
+          controller.emailController.text =
+              controller.profile.value.email.value;
 
           return Column(
             children: [
@@ -54,13 +61,16 @@ class ProfileViewView extends GetView<ProfileViewController> {
                                 height: 100,
                                 decoration: BoxDecoration(
                                   shape: BoxShape.circle,
-                                  image: controller.profile.value.imagePath.value.isNotEmpty
+                                  image: controller.profile.value.imagePath
+                                          .value.isNotEmpty
                                       ? DecorationImage(
-                                          image: FileImage(File(controller.profile.value.imagePath.value)),
+                                          image: FileImage(File(controller
+                                              .profile.value.imagePath.value)),
                                           fit: BoxFit.cover,
                                         )
                                       : const DecorationImage(
-                                          image: AssetImage('assets/default_avatar.png'),
+                                          image: AssetImage(
+                                              'assets/default_avatar.png'),
                                           fit: BoxFit.cover,
                                         ),
                                 ),
@@ -161,19 +171,15 @@ class ProfileViewView extends GetView<ProfileViewController> {
                               vertical: 12,
                             ),
                           ),
-                          onChanged: (value) {
-                            controller.profile.update((val) {
-                              if (val != null) val.email.value = value;
-                            });
-                          },
-                          readOnly: true, // Email shouldn't be editable as it's tied to Firebase Auth
+                          readOnly:
+                              true, // Email shouldn't be editable as it's tied to Firebase Auth
                         ),
                       ],
                     ),
                   ),
                 ),
               ),
-              
+
               // Update Button
               ClipRRect(
                 borderRadius: const BorderRadius.only(

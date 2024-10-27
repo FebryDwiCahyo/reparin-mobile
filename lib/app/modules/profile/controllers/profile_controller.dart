@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -17,10 +19,53 @@ class ProfileController extends GetxController {
   final phoneController = TextEditingController();
   final emailController = TextEditingController();
 
+  // Stream subscription for real-time updates
+  StreamSubscription<DocumentSnapshot>? _profileSubscription;
+
   @override
   void onInit() {
     super.onInit();
-    loadUserProfile();
+    // Instead of just loading once, we'll listen to real-time updates
+    setupProfileListener();
+  }
+
+  void setupProfileListener() {
+    final User? currentUser = _auth.currentUser;
+    if (currentUser != null) {
+      _profileSubscription = _firestore
+          .collection('users')
+          .doc(currentUser.uid)
+          .snapshots()
+          .listen(
+        (DocumentSnapshot snapshot) {
+          if (snapshot.exists) {
+            // Tambahkan debug prints yang lebih detail
+            final data = snapshot.data() as Map<String, dynamic>;
+            print('Raw Firestore data:');
+            print('imagePath from Firestore: ${data['imagePath']}');
+
+            try {
+              profile.value = Profile.fromFirestore(snapshot);
+              print('Profile after conversion:');
+              print(
+                  'Image Path in profile object: ${profile.value.imagePath.value}');
+
+              // Verify if the path is actually changing
+              if (profile.value.imagePath.value.isEmpty) {
+                print('Warning: Image path is empty after conversion');
+              }
+            } catch (e) {
+              print('Error converting Firestore data to Profile: $e');
+            }
+          } else {
+            print('Document does not exist');
+          }
+        },
+        onError: (error) {
+          print('Error in profile stream: $error');
+        },
+      );
+    }
   }
 
   Future<void> loadUserProfile() async {
@@ -28,17 +73,18 @@ class ProfileController extends GetxController {
       final User? currentUser = _auth.currentUser;
 
       if (currentUser != null) {
-        // Ambil email dari Firebase Auth
+        // Get email from Firebase Auth
         emailController.text = currentUser.email ?? '';
         profile.value.email.value = currentUser.email ?? '';
 
-        // Ambil data tambahan dari Firestore
-        final DocumentSnapshot doc = await _firestore.collection('users').doc(currentUser.uid).get();
+        // Get additional data from Firestore
+        final DocumentSnapshot doc =
+            await _firestore.collection('users').doc(currentUser.uid).get();
 
         if (doc.exists) {
           profile.value = Profile.fromFirestore(doc);
 
-          // Update text controllers dengan data dari Firestore
+          // Update text controllers with Firestore data
           nameController.text = profile.value.name.value;
           phoneController.text = profile.value.phone.value;
         } else {
@@ -83,7 +129,8 @@ class ProfileController extends GetxController {
 
         // Upload to Firebase Storage
         final String userId = _auth.currentUser?.uid ?? '';
-        final Reference ref = _storage.ref().child('profile_images/$userId.jpg');
+        final Reference ref =
+            _storage.ref().child('profile_images/$userId.jpg');
 
         // Show loading indicator
         Get.dialog(
@@ -97,16 +144,11 @@ class ProfileController extends GetxController {
         // Get download URL
         final String downloadURL = await ref.getDownloadURL();
 
-        // Update Firestore
+        // Update Firestore - this will trigger the stream listener
         await _firestore
             .collection('users')
             .doc(userId)
             .update({'imagePath': downloadURL});
-
-        // Update local state
-        profile.update((val) {
-          if (val != null) val.imagePath.value = downloadURL;
-        });
 
         // Close loading dialog
         Get.back();
@@ -143,7 +185,6 @@ class ProfileController extends GetxController {
       };
 
       await _firestore.collection('users').doc(userId).update(userData);
-
       return true;
     } catch (e) {
       Get.snackbar(
@@ -159,9 +200,10 @@ class ProfileController extends GetxController {
 
   @override
   void onClose() {
-    // nameController.dispose();
-    // phoneController.dispose();
-    // emailController.dispose();
-    // super.onClose();
+    _profileSubscription?.cancel(); // Cancel the stream subscription
+    nameController.dispose();
+    phoneController.dispose();
+    emailController.dispose();
+    super.onClose();
   }
 }
