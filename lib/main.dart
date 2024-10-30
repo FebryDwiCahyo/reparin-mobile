@@ -6,12 +6,15 @@ import 'package:reparin_mobile/firebase_options.dart';
 import 'app/data/services/authentication/controllers/authentication_controller.dart';
 import 'app/modules/navbar/controllers/navbar_controller.dart';
 import 'app/routes/app_pages.dart';
+import 'app/data/services/notification_handler.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
-  options: DefaultFirebaseOptions.currentPlatform,
-) ;
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+  await FirebaseMessagingHandler().initPushNotification();
+  await FirebaseMessagingHandler().initLocalNotification();
   Get.put(AuthenticationController(), permanent: true);
   Get.put(NavbarController(), permanent: true);
   Get.put(ProfileController(), permanent: true);
