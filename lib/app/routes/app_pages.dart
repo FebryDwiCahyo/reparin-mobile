@@ -1,5 +1,7 @@
 import 'package:get/get.dart';
 import '../data/services/authentication/bindings/authentication_binding.dart';
+import '../modules/booking_service/controllers/booking_service_controller.dart';
+import '../modules/booking_service/views/booking_service_view.dart';
 import '../modules/category/bindings/category_binding.dart';
 import '../modules/category/views/category_view.dart';
 import '../modules/home/bindings/home_binding.dart';
@@ -157,6 +159,21 @@ class AppPages {
       NavbarBinding(),
       AuthenticationBinding(),
     ]),
+    GetPage(
+      name: '/service-booking',
+      page: () {
+        // Get the arguments passed during navigation
+        final args = Get.arguments as Map<String, dynamic>;
+        return ServiceBookingView(
+          serviceType: args['serviceType'] as String,
+          providerName: args['providerName'] as String,
+          price: args['price'] as double,
+        );
+      },
+      binding: BindingsBuilder(() {
+        Get.lazyPut(() => ServiceBookingController());
+      }),
+    ),
     GetPage(
         name: _Paths.ProfileView,
         page: () => const ProfileViewView(),

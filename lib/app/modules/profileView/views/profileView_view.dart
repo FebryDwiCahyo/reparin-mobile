@@ -12,17 +12,13 @@ class ProfileViewView extends GetView<ProfileViewController> {
     return Scaffold(
       body: SafeArea(
         child: Obx(() {
-          // Pastikan data profil sudah termuat sebelum menampilkan konten
           if (controller.profile.value.name.value.isEmpty) {
             return const Center(child: CircularProgressIndicator());
           }
 
-          // Initialize text controllers with current values
           controller.nameController.text = controller.profile.value.name.value;
-          controller.phoneController.text =
-              controller.profile.value.phone.value;
-          controller.emailController.text =
-              controller.profile.value.email.value;
+          controller.phoneController.text = controller.profile.value.phone.value;
+          controller.emailController.text = controller.profile.value.email.value;
 
           return Column(
             children: [
@@ -61,16 +57,13 @@ class ProfileViewView extends GetView<ProfileViewController> {
                                 height: 100,
                                 decoration: BoxDecoration(
                                   shape: BoxShape.circle,
-                                  image: controller.profile.value.imagePath
-                                          .value.isNotEmpty
+                                  image: controller.profile.value.imagePath.value.isNotEmpty
                                       ? DecorationImage(
-                                          image: FileImage(File(controller
-                                              .profile.value.imagePath.value)),
+                                          image: FileImage(File(controller.profile.value.imagePath.value)),
                                           fit: BoxFit.cover,
                                         )
                                       : const DecorationImage(
-                                          image: AssetImage(
-                                              'assets/default_avatar.png'),
+                                          image: AssetImage('assets/default_avatar.png'),
                                           fit: BoxFit.cover,
                                         ),
                                 ),
@@ -87,8 +80,37 @@ class ProfileViewView extends GetView<ProfileViewController> {
                                       size: 18,
                                       color: Colors.black,
                                     ),
-                                    onPressed: () async {
-                                      await controller.updateProfileImage();
+                                    onPressed: () {
+                                      showModalBottomSheet(
+                                        context: context,
+                                        builder: (BuildContext context) {
+                                          return SafeArea(
+                                            child: Column(
+                                              mainAxisSize: MainAxisSize.min,
+                                              children: <Widget>[
+                                                ListTile(
+                                                  leading: const Icon(Icons.photo_library),
+                                                  title: const Text('Choose from Gallery'),
+                                                  onTap: () {
+                                                    Navigator.pop(context);
+                                                    controller.updateProfileImage();
+                                                  },
+                                                ),
+                                                if (controller.profile.value.imagePath.value.isNotEmpty)
+                                                  ListTile(
+                                                    leading: const Icon(Icons.delete, color: Colors.red),
+                                                    title: const Text('Remove Photo', 
+                                                      style: TextStyle(color: Colors.red)),
+                                                    onTap: () {
+                                                      Navigator.pop(context);
+                                                      controller.deleteProfileImage();
+                                                    },
+                                                  ),
+                                              ],
+                                            ),
+                                          );
+                                        },
+                                      );
                                     },
                                   ),
                                 ),

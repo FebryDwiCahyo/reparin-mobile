@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -68,6 +70,45 @@ Future<void> updateProfileImage() async {
     return false;
   }
 }
+
+  Future<void> deleteProfileImage() async {
+    try {
+      // If there's an existing image file, delete it
+      if (profile.value.imagePath.value.isNotEmpty) {
+        final File imageFile = File(profile.value.imagePath.value);
+        if (await imageFile.exists()) {
+          await imageFile.delete();
+        }
+      }
+
+      // Reset the image path in the profile
+      profile.update((val) {
+        if (val != null) val.imagePath.value = '';
+      });
+
+      // Update Firestore to remove the image path
+      await _firestore
+          .collection('users')
+          .doc(_auth.currentUser?.uid)
+          .update({'imagePath': ''});
+
+      Get.snackbar(
+        'Success',
+        'Profile picture removed successfully',
+        snackPosition: SnackPosition.BOTTOM,
+        backgroundColor: Colors.green.withOpacity(0.1),
+        colorText: Colors.green,
+      );
+    } catch (e) {
+      Get.snackbar(
+        'Error',
+        'Failed to remove profile picture: $e',
+        snackPosition: SnackPosition.BOTTOM,
+        backgroundColor: Colors.red.withOpacity(0.1),
+        colorText: Colors.red,
+      );
+    }
+  }
 
 @override
 void onClose() {
