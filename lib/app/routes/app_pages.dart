@@ -162,7 +162,6 @@ class AppPages {
     GetPage(
       name: '/service-booking',
       page: () {
-        // Get the arguments passed during navigation
         final args = Get.arguments as Map<String, dynamic>;
         return ServiceBookingView(
           serviceType: args['serviceType'] as String,

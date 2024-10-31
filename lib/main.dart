@@ -20,7 +20,7 @@ Future<void> main() async {
   Get.put(ProfileController(), permanent: true);
   runApp(
     GetMaterialApp(
-      title: "Application",
+      title: "Reparin-Mobile",
       initialRoute: AppPages.INITIAL,
       getPages: AppPages.routes,
       theme: ThemeData(
