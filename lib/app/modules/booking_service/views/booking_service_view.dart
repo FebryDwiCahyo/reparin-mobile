@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../controllers/booking_service_controller.dart';
 
-
 class ServiceBookingView extends GetView<ServiceBookingController> {
   final String serviceType;
   final String providerName;
@@ -34,7 +33,7 @@ class ServiceBookingView extends GetView<ServiceBookingController> {
         if (controller.isLoading.value) {
           return const Center(child: CircularProgressIndicator());
         }
-        
+
         return SingleChildScrollView(
           padding: const EdgeInsets.all(16.0),
           child: Column(
@@ -54,13 +53,14 @@ class ServiceBookingView extends GetView<ServiceBookingController> {
                       const SizedBox(height: 16),
                       _buildDetailRow('Service Type:', serviceType),
                       _buildDetailRow('Provider:', providerName),
-                      _buildDetailRow('Price:', '\$${price.toStringAsFixed(2)}'),
+                      _buildDetailRow(
+                          'Price:', '\$${price.toStringAsFixed(2)}'),
                     ],
                   ),
                 ),
               ),
               const SizedBox(height: 16),
-              
+
               // User Details Card
               Card(
                 child: Padding(
@@ -90,7 +90,7 @@ class ServiceBookingView extends GetView<ServiceBookingController> {
                 ),
               ),
               const SizedBox(height: 16),
-              
+
               // Service Description
               TextField(
                 controller: controller.descriptionController,
@@ -102,7 +102,7 @@ class ServiceBookingView extends GetView<ServiceBookingController> {
                 ),
               ),
               const SizedBox(height: 16),
-              
+
               // Address
               TextField(
                 controller: controller.addressController,
@@ -114,7 +114,7 @@ class ServiceBookingView extends GetView<ServiceBookingController> {
                 ),
               ),
               const SizedBox(height: 24),
-              
+
               // Book Now Button
               SizedBox(
                 width: double.infinity,
@@ -135,15 +135,16 @@ class ServiceBookingView extends GetView<ServiceBookingController> {
                       );
                       return;
                     }
-                    
+
                     final success = await controller.createServiceOrder(
                       serviceType: serviceType,
                       providerName: providerName,
                       price: price,
                     );
-                    
+
                     if (success) {
-                      Get.offAllNamed('/home'); // Navigate to home after success
+                      Get.offAllNamed(
+                          '/home'); // Navigate to home after success
                     }
                   },
                   child: const Text(

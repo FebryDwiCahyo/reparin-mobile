@@ -4,10 +4,14 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import '../../../data/models/service_order_model.dart';
 import '../../../data/models/profile_model.dart';
+import '../../../data/services/notification_handler.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 
 class ServiceBookingController extends GetxController {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
   final FirebaseAuth _auth = FirebaseAuth.instance;
+  final FirebaseMessagingHandler _notificationHandler = FirebaseMessagingHandler();
+  final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
   
   final Rx<Profile> userProfile = Profile.empty().obs;
   final RxBool isLoading = false.obs;
@@ -19,6 +23,11 @@ class ServiceBookingController extends GetxController {
   void onInit() {
     super.onInit();
     loadUserProfile();
+    initNotifications();
+  }
+
+  Future<void> initNotifications() async {
+    await _notificationHandler.initLocalNotification();
   }
 
   Future<void> loadUserProfile() async {
@@ -33,6 +42,31 @@ class ServiceBookingController extends GetxController {
     } catch (e) {
       print('Error loading user profile: $e');
     }
+  }
+
+  Future<void> showBookingSuccessNotification() async {
+    var androidPlatformChannelSpecifics = const AndroidNotificationDetails(
+      'booking_channel', 
+      'Booking Notifications',
+      channelDescription: 'Notifications for service bookings',
+      importance: Importance.max,
+      priority: Priority.high,
+      ticker: 'ticker',
+    );
+
+    var iOSPlatformChannelSpecifics = const DarwinNotificationDetails();
+
+    var platformChannelSpecifics = NotificationDetails(
+      android: androidPlatformChannelSpecifics,
+      iOS: iOSPlatformChannelSpecifics,
+    );
+
+    await flutterLocalNotificationsPlugin.show(
+      0,
+      'Booking Successful!',
+      'Your service has been booked successfully. We will contact you soon.',
+      platformChannelSpecifics,
+    );
   }
 
   Future<bool> createServiceOrder({
@@ -64,6 +98,9 @@ class ServiceBookingController extends GetxController {
 
       // Create the order in Firestore
       await _firestore.collection('service_orders').add(serviceOrder.toJson());
+      
+      // Show local notification
+      await showBookingSuccessNotification();
       
       Get.snackbar(
         'Success',
