@@ -82,7 +82,7 @@ part 'app_routes.dart';
 class AppPages {
   AppPages._();
 
-  static const INITIAL = Routes.ONBOARDING;
+  static const INITIAL = Routes.SERVICE;
   static const LOGIN = Routes.LOGIN;
   static const REGISTER = Routes.REGISTER;
   static const PROMO = Routes.PROMO;

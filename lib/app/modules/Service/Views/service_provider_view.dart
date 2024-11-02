@@ -98,13 +98,13 @@ class ServiceProviderView extends GetView<ServiceProviderController> {
   }
 
   Widget _buildTabBar() {
-    return Obx(() => TabBar(
+    return TabBar(
       controller: controller.tabController,
       tabs: controller.tabs.map((String tab) => Tab(text: tab)).toList(),
       labelColor: Colors.blue,
       unselectedLabelColor: Colors.grey,
       indicatorColor: Colors.blue,
-    ));
+    );
   }
 
   Widget _buildServiceList() {
